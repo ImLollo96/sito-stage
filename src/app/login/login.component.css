@@ -1,0 +1,11 @@
+.card {
+    max-width: 500px;
+    max-height: 600px;
+    margin: 1em auto;
+    text-align: center;
+  }
+  .full-width-input{
+    width: 100%;
+    display: block;
+    min-width: 150px;
+  }

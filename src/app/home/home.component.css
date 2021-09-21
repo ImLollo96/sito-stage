@@ -1,0 +1,35 @@
+
+.home img{
+    width: 100%;
+    height: 300px;
+    object-position: center;
+    object-fit: cover;
+}
+@media screen and (max-width:600px){
+    .home img{
+        height: 100px;
+    }
+}
+.text-area{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.weatherWidgetRow{
+    display:block;
+    margin:0 auto;
+    width: fit-content;
+}
+.meteoBox{
+    float: left;
+    color:black;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.prova{
+    color: coral;
+    align-content: flex-start;
+}

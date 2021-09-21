@@ -1,0 +1,18 @@
+.example-card {
+    max-width: 300px;
+    min-height: 475px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    float: left;
+    background-color: blanchedalmond;
+}
+  
+  .example-header-image {
+    background-size: cover;
+  }
+
+  .mat-card-avatar {
+    width: 20px;
+    height: 20px;
+  }
+  

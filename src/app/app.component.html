@@ -1,0 +1,77 @@
+<!--TOOLBAR-->
+<mat-toolbar color="primary" md-scroll-shrink>
+  <button mat-icon-button type="button" aria-label="Toggle sidenav" (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+    <mat-icon >menu</mat-icon>
+  </button>
+  <a routerLink="" class="titolo">{{title}}</a>
+  <span class="example-spacer"></span>
+  <a routerLink="login" class="titolo" *ngIf="siVede">{{accedi}}</a>
+  <button mat-icon-button [matMenuTriggerFor]="option" class="example-icon" aria-label="Example icon-button with share icon" *ngIf="isVisible">
+    <mat-icon >account_circle</mat-icon>
+    <mat-menu #option="matMenu">
+      <a mat-menu-item routerLink="" (click)="setOff()">
+        <mat-icon>logout</mat-icon>
+        <span>LogOut</span>
+      </a>
+    </mat-menu>
+  </button>
+  <button mat-icon-button [matMenuTriggerFor]="share" class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon >share</mat-icon>
+    <mat-menu #share="matMenu">
+      <a mat-menu-item href="https://www.facebook.com/">
+        <mat-icon>face</mat-icon>
+        <span>FaceBook</span>
+      </a>
+      <a mat-menu-item href="https://www.instagram.com/">
+        <mat-icon>photo_camera</mat-icon>
+        <span>Instagram</span>
+      </a>
+      <a mat-menu-item href="https://it.linkedin.com/">
+        <mat-icon>work</mat-icon>
+        <span>LinkedIn</span>
+      </a>
+    </mat-menu>
+  </button>
+</mat-toolbar>
+
+<!--SIDEBAR-->
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"[opened]="(isHandset$ | async) === false">
+    <mat-list>
+      <mat-list-item>
+        <button mat-menu-item class="list-button" routerLink="">
+          <mat-icon>home</mat-icon>
+          <span>Home Page</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item *ngIf="isVisible">
+        <button mat-menu-item routerLink="table">
+          <mat-icon>view_list</mat-icon>
+          <span>Tabella</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item *ngIf="isVisible">
+        <button mat-menu-item routerLink="grid">
+          <mat-icon>view_module</mat-icon>
+          <span>Post</span>
+        </button>
+      </mat-list-item>
+     </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <!--CONTENUTO PAGINE-->
+    <div id="main">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!--FOOTER-->
+<footer id="footer">
+  <div>
+    <mat-toolbar color="primary" md-scroll-shrink>
+        <span class="title-center">&copy; My Site. All right reserved</span>
+    </mat-toolbar>
+  </div>
+</footer>

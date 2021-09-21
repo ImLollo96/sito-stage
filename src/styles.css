@@ -1,0 +1,139 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body { 
+    height: 100%;
+}
+body {  
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+#main {
+  margin: 0 auto;
+  min-height: calc(100vh - 64px - 64px);
+}
+#footer{
+  width: 100%;
+  position: absolute;
+  clear: both;
+  
+}
+.example-spacer {
+    flex: 1 1 auto;
+}
+section {
+    display: table;
+  }
+  
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+  
+  .example-button-row {
+    display: table-cell;
+    width: 490px;
+  }
+  
+  .example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }
+  .down {
+    position:absolute;
+    bottom:0;
+    width:100%;
+ }
+ .title-center {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+  }
+  .titolo{
+      color: white;
+      text-decoration: none;
+  }
+  .example-events {
+    width: 300px;
+    height: 200px;
+    overflow: auto;
+    border: 1px solid #555;
+  }
+  .sidenav {
+    width: 180px;
+  }
+
+
+/*
+
+
+<mat-toolbar color="primary" md-scroll-shrink>
+  <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon >menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="">
+      <mat-icon>home</mat-icon>
+      <span>Home Page</span>
+    </button>
+    <button mat-menu-item routerLink="table">
+      <mat-icon>view_list</mat-icon>
+      <span>Tabella</span>
+    </button>
+    <button mat-menu-item routerLink="grid">
+      <mat-icon>view_module</mat-icon>
+      <span>Post</span>
+    </button>
+  </mat-menu>
+  <a routerLink="" class="titolo">{{title}}</a>
+  <span class="example-spacer"></span>
+  <button mat-icon-button [matMenuTriggerFor]="share" class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon >share</mat-icon>
+    <mat-menu #share="matMenu">
+      <a mat-menu-item href="https://www.facebook.com/">
+        <mat-icon>face</mat-icon>
+        <span>FaceBook</span>
+      </a>
+      <a mat-menu-item href="https://www.instagram.com/">
+        <mat-icon>photo_camera</mat-icon>
+        <span>Instagram</span>
+      </a>
+      <a mat-menu-item href="https://it.linkedin.com/">
+        <mat-icon>work</mat-icon>
+        <span>LinkedIn</span>
+      </a>
+    </mat-menu>
+  </button>
+</mat-toolbar>
+
+
+*/
+
+
+
+/*
+
+<footer id="footer">
+  <div>
+    <mat-toolbar color="primary" md-scroll-shrink>
+        <span class="title-center">&copy; My Site. All right reserved</span>
+    </mat-toolbar>
+  </div>
+</footer>
+
+*/

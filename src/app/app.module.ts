@@ -1,0 +1,65 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home.component';
+import { TableComponent } from './table/table.component';
+import { GridComponent } from './grid/grid.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatCommonModule} from '@angular/material/core';
+import {MatCardModule} from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatListModule } from '@angular/material/list';
+import {MatTableModule} from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { LoginComponent } from './login/login.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './shared/auth.guard';
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    TableComponent,
+    GridComponent,
+    LoginComponent,
+    
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatAutocompleteModule,
+    MatCommonModule,
+    MatCardModule,
+    MatMenuModule,
+    MatSidenavModule,
+    LayoutModule,
+    MatListModule,
+    MatTableModule,
+    HttpClientModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
+
+  ],
+  providers: [AuthGuard],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
