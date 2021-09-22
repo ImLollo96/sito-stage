@@ -21,7 +21,10 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "@okta/okta-auth-js": "4.8.0",
+    "@types/gapi": "0.0.41",
+    "@types/gapi.auth2": "0.0.55",
     "angular-in-memory-web-api": "^0.11.0",
+    "angularx-social-login": "^4.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppComponent } from '../app.component';
+import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(public fb: FormBuilder,private authService: AuthService, private appC: AppComponent) { 
+  constructor(public fb: FormBuilder,private authService: AuthService, private appC: AppComponent, private authS: SocialAuthService, private router: Router) { 
     
     this.form = fb.group({
       'username': ['', Validators.required],
@@ -37,6 +39,12 @@ export class LoginComponent implements OnInit {
   }
 
   turnOn(){
+    this.appC.setOn();
+  }
+
+  signInHandler(){
+    this.authS.signIn(GoogleLoginProvider.PROVIDER_ID).then(() => this.router.navigate(['']));
+    this.authService.isLoggedGoogle();
     this.appC.setOn();
   }
 

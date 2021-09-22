@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import datiAutenticazione from 'C:/Users/Lorenzo/Documents/ANGULAR/progetto1/src/app/password.json';
+import datiAutenticazione from './password.json';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,12 @@ export class AuthService {
       }
     }
     return false;
+  }
+
+  public isLoggedGoogle(){
+    this.isAuthenticated =  true;
+    localStorage.setItem('loggedIn', 'true');
+    return true; 
   }
 
   public setFalse(){

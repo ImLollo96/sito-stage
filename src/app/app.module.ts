@@ -25,6 +25,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './shared/auth.guard';
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
 
 
 @NgModule({
@@ -56,10 +58,22 @@ import { AuthGuard } from './shared/auth.guard';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    SocialLoginModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,
+  {
+    provide: 'SocialAuthServiceConfig',
+      useValue:{
+        autoLogin: false,
+        providers:[
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('111898526119-bip3c2ncalj0hfe5s3k4cop1dde36tok.apps.googleusercontent.com')
+          }
+        ]
+      } as SocialAuthServiceConfig,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
