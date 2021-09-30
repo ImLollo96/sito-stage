@@ -10,12 +10,11 @@ export class AuthService {
 
   constructor(private router: Router) { 
   }
-
-
-  isAuthenticated:boolean = JSON.parse(localStorage.getItem('loggedIn') || 'false');
   DATA_ELEMENT: Array<any> = datiAutenticazione;
+  isAuthenticated:boolean = JSON.parse(localStorage.getItem('loggedIn') || 'false');
+  
 
-  public isLogged(u:string, p:string){
+  public isLogged(u:string, p:string){ 
     
     if(this.DATA_ELEMENT.find(x=>x.user == u).user == u){ 
       if(this.DATA_ELEMENT.find(x=>x.pass == p).pass == p){
@@ -44,3 +43,32 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('loggedIn') || this.isAuthenticated.toString());
   }
 }
+
+
+
+
+
+
+//DATA_ELEMENT: Observable<any> = this.http.get('http://localhost:3000/users');
+
+// us:any;
+  // pa:any;
+
+  // public isLogged(u:string, p:string){
+    
+  //   this.DATA_ELEMENT.subscribe(response=>{
+  //     this.us=response.user;
+  //     this.pa=response.pa;
+  //   });
+
+  //   if(this.us.find(x=>x.user == u).user == u){ 
+  //     if(this.pa.find(x=>x.pass == p).pass == p){
+  //       this.isAuthenticated =  true;
+  //       console.log(this.isAuthenticated);
+  //       this.router.navigate(['']);
+  //       localStorage.setItem('loggedIn', 'true');
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }

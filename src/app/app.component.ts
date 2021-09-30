@@ -23,21 +23,25 @@ export class AppComponent {
       shareReplay()
     );
   
-  isVisible= false;
-  siVede=true;
+  isVisible:boolean = false;
+ 
 
-  constructor(private breakpointObserver: BreakpointObserver, private authG: AuthGuard, private auth: AuthService, private authS: SocialAuthService) {}
+  constructor(private breakpointObserver: BreakpointObserver, private authG: AuthGuard, private auth: AuthService, private authS: SocialAuthService) {
+    console.log('SET OFF isVisible =',this.isVisible);
+  }
 
   setOff(){
     this.auth.setFalse();
     this.authS.signOut();
     this.isVisible=false;
-    this.siVede=true;
+    
+    console.log('SET OFF isVisible =',this.isVisible);
   }
 
   setOn(){
     this.isVisible=true;
-    this.siVede=false;
+    
+    console.log('SET ON isVisible =',this.isVisible);
   }
 
 }

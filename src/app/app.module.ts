@@ -27,6 +27,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './shared/auth.guard';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogExampleComponent } from './dialog-example/dialog-example.component';
+import { DialogGridComponent } from './dialog-grid/dialog-grid.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 @NgModule({
@@ -36,12 +42,16 @@ import { GoogleLoginProvider } from 'angularx-social-login';
     TableComponent,
     GridComponent,
     LoginComponent,
+    DialogExampleComponent,
+    DialogGridComponent,
     
   ],
+  entryComponents:[DialogExampleComponent, DialogGridComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -53,13 +63,16 @@ import { GoogleLoginProvider } from 'angularx-social-login';
     LayoutModule,
     MatListModule,
     MatTableModule,
-    HttpClientModule,
     MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatDialogModule,
+    MatProgressBarModule,
+    MaterialFileInputModule,
+    NgxSkeletonLoaderModule
   ],
   providers: [AuthGuard,
   {

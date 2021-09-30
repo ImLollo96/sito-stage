@@ -1,0 +1,36 @@
+<h1 mat-dialog-title style="text-align: center;">{{titolo}}</h1>
+<mat-dialog-content [formGroup]="form">
+  <!-- <mat-form-field >
+    <mat-label>Icona</mat-label>
+    <input matInput formControlName="icon" required >
+  </mat-form-field> -->
+  <mat-form-field >
+    <mat-label>Nome</mat-label>
+    <input matInput formControlName="title" required >
+  </mat-form-field>
+  <mat-form-field >
+    <mat-label>Posizione/Luogo</mat-label>
+    <input matInput formControlName="position" required >
+  </mat-form-field>
+  <mat-form-field>
+    <ngx-mat-file-input #upload formControlName="image" placeholder="Carica Immagine" (change)="onselectFile($event)"></ngx-mat-file-input>
+    <button mat-icon-button matSuffix *ngIf="!upload.empty" (click)="upload.clear($event)">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field style="width: 500px; padding-left: 100px;">
+    <mat-label>Testo del Post</mat-label>
+    <textarea rows="2" cols="25" matInput formControlName="post" style="height: 75px;" required></textarea>
+  </mat-form-field>
+  
+  <br>
+  <div class="bott" style="padding-top: 25px;">
+    <img [src]="url" height="150" width="300">
+  </div>
+    
+</mat-dialog-content>
+
+<div mat-dialog-actions class="bott">
+  <button mat-button (click)="onNoClick()">Indietro</button>
+  <button mat-button  (click)="save()" cdkFocusInitial>Ok</button>
+</div>

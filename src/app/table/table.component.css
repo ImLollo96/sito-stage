@@ -1,3 +1,12 @@
 table {
     width: 100%;
   }
+.bott{
+  display: flex;
+  justify-content: center;
+}
+.bottIn{
+  height: 50px;
+  font-size: 25px;
+  margin-top: 20px;
+}

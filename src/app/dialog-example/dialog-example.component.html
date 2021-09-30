@@ -1,0 +1,25 @@
+<h1 mat-dialog-title style="text-align: center;">{{title}}</h1>
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field >
+    <mat-label>Nome</mat-label>
+    <input matInput formControlName="nome" required >
+  </mat-form-field>
+  <mat-form-field >
+    <mat-label>Cognome</mat-label>
+    <input matInput formControlName="cognome" required >
+  </mat-form-field>
+  <br>
+  <mat-form-field >
+    <mat-label>Telefono</mat-label>
+    <input matInput formControlName="telefono" required >
+  </mat-form-field>
+  <mat-form-field >
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Email" formControlName="mail" required>
+  </mat-form-field>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Indietro</button>
+  <button mat-button  (click)="save()" cdkFocusInitial>Ok</button>
+</div>

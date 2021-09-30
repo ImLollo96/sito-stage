@@ -1,0 +1,11 @@
+.mat-form-field {
+    margin-right: 25px;
+}
+.mat-dialog-content{
+    height: 400px;
+    width: 700px;
+}
+.bott{
+    display: flex;
+    justify-content: center;
+}

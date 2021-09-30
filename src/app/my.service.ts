@@ -1,26 +1,31 @@
-import { Injectable } from '@angular/core';
+import { Injectable ,Directive, Output, EventEmitter } from '@angular/core';
 import { User } from './user';
 import  list from './data-for-table.json';
 import  dati from './grid-data.json';
-import datiAutenticazione from 'C:/Users/Lorenzo/Documents/ANGULAR/progetto1/src/app/password.json';
+import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
-@Injectable({
+@Injectable({ 
   providedIn: 'root'
 })
 export class MyService {
 
-
-  constructor() { 
+  constructor(private http: HttpClient) { 
     console.log('Chiamato');
   }
 
-  public getInformation(): Promise<User []> {
-     return new Promise((resolve) => setTimeout(resolve, 500, list));
+  //ritorna le info per la tabella
+  getInformation(): Observable<any>{
+    return this.http.get('http://localhost:3000/users');
   }
-  public getDati(): Promise<Array<any>> {
-    return new Promise((resolve) => setTimeout(resolve, 500, dati));  
+
+  //ritorna le info per grid
+  getDati(): Observable<any>{
+    return this.http.get('http://localhost:3000/grid');
   }
+
+  
   log(arg0: string): void {
     throw new Error('Method not implemented.');
   }
@@ -35,3 +40,17 @@ export class MyService {
   }
 
 }
+
+
+
+
+
+//PROMISE TO GET INFO BY JSON
+
+// public getInformation(): Promise<User []> {
+  //    return new Promise((resolve) => setTimeout(resolve, 500, list));
+  // }
+
+  // public getDati(): Promise<Array<any>> {
+  //   return new Promise((resolve) => setTimeout(resolve, 500, dati));  
+  // }
