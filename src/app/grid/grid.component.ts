@@ -62,7 +62,7 @@ export class GridComponent implements OnInit {
     const post = array.post;
     const newGrid = {id, icon, title, position, post, image}
     this.DATA_ELEMENT.push(newGrid);
-    this.http.post('http://localhost:3000/grid', newGrid).subscribe((result)=>{
+    this.http.post('/api/grid/v2', newGrid).subscribe((result)=>{
       this.loadGrid();
       console.log(this.DATA_ELEMENT); 
     },
@@ -95,7 +95,7 @@ export class GridComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result =>{
       console.log('Result: ',result);
       if(result.userId != undefined){
-        this.http.put('http://localhost:3000/grid/'+ id, result).subscribe(res=>{
+        this.http.put('/api/grid/'+ id, result).subscribe(res=>{
           this.loadGrid();
         });
       }

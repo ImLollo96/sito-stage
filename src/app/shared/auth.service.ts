@@ -49,7 +49,7 @@ export class AuthService {
 
 
 
-//DATA_ELEMENT: Observable<any> = this.http.get('http://localhost:3000/users');
+//DATA_ELEMENT: Observable<any> = this.http.get('/api/users');
 
 // us:any;
   // pa:any;

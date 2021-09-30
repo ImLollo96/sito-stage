@@ -17,12 +17,12 @@ export class MyService {
 
   //ritorna le info per la tabella
   getInformation(): Observable<any>{
-    return this.http.get('http://localhost:3000/users');
+    return this.http.get('/api/users');
   }
 
   //ritorna le info per grid
   getDati(): Observable<any>{
-    return this.http.get('http://localhost:3000/grid');
+    return this.http.get('/api/grid');
   }
 
   

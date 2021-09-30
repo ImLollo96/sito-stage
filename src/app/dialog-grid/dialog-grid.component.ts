@@ -49,16 +49,16 @@ export class DialogGridComponent implements OnInit {
     }
   }
 
-  save(){
+  async save(){
     if(this.data===true){
       //const icon = this.form.controls['icon'].value;
       const icon = "https://previews.123rf.com/images/sudowoodo/sudowoodo2003/sudowoodo200300038/142224178-cute-cartoon-character-working-from-home-remote-work-and-telecommuting-or-freelance-job-isolated-vec.jpg";
       const title = this.form.controls['title'].value;
       const position = this.form.controls['position'].value;
       const post = this.form.controls['post'].value;
-      const image = this.image.toString();
-      
-      this.dialogRef.close({icon, title, position, post, image});
+      const image = this.url;
+      console.log(image)
+      this.dialogRef.close({ icon, title, position, post, image });
     }else{
       if(this.form.valid){
         const id = this.data.id;
@@ -76,7 +76,7 @@ export class DialogGridComponent implements OnInit {
     // if(this.data===true){
     //   const fd = new FormData();
     //   fd.append('image', this.image, this.image.name);
-    //   this.http.post('http://localhost:3000/image', fd).subscribe(res =>{
+    //   this.http.post('/api/image', fd).subscribe(res =>{
     //     console.log(res);
     //   });
     // }

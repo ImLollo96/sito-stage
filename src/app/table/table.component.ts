@@ -52,7 +52,7 @@ export class TableComponent implements OnInit {
     const emailAddress = array.emailAddress;
     const newUser = {userId: uuidv4(), firstName, lastName, phoneNumber, emailAddress}
     this.ELEMENT_DATA.push(newUser);
-    this.http.post('http://localhost:3000/users', newUser).subscribe((result)=>{
+    this.http.post('/api/users', newUser).subscribe((result)=>{
       this.loadTable();
       console.log(this.ELEMENT_DATA); 
     },
@@ -71,7 +71,7 @@ export class TableComponent implements OnInit {
   deleteUser(id:any){
     console.log(id);
     if (confirm('Sei sicuro di volerlo eliminare?')) {
-      this.http.delete('http://localhost:3000/users/'+ id).subscribe(result=>{
+      this.http.delete('/api/users/'+ id).subscribe(result=>{
       this.subTo();
       });
       
@@ -93,7 +93,7 @@ export class TableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result =>{
       console.log('Result: ',result);
       if(result.userId != undefined){
-        this.http.put('http://localhost:3000/users/'+ id, result).subscribe(res=>{
+        this.http.put('/api/users/'+ id, result).subscribe(res=>{
         this.subTo();
         });
       }
