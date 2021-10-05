@@ -5,7 +5,7 @@
   </button>
   <a routerLink="" class="titolo">{{title}}</a>
   <span class="example-spacer"></span>
-  <a routerLink="login" class="titolo" *ngIf="isVisible==false">{{accedi}}</a>
+  <a routerLink="login" class="titolo" *ngIf="isVisible===false">{{accedi}}</a>
   <button mat-icon-button [matMenuTriggerFor]="option" class="example-icon" aria-label="Example icon-button with share icon" *ngIf="isVisible==true">
     <mat-icon >account_circle</mat-icon>
     <mat-menu #option="matMenu">

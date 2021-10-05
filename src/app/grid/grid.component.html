@@ -1,7 +1,7 @@
 <mat-grid-list [cols]="breakpoint" rowHeight="600px" (window:resize)="onResize($event)">
   <mat-grid-tile *ngFor="let element of DATA_ELEMENT">
-    <mat-card class="example-card" (mouseover)="showButton = true" (mouseleave)="showButton = false">
-      <button mat-mini-fab style="background-color: coral; position: absolute; right: 5px;" *ngIf = "showButton" (click)="openDialogPuT(element.id)">
+    <mat-card class="example-card" (mouseover)="showButton = element.id" (mouseleave)="showButton = false">
+      <button mat-mini-fab style="background-color: coral; position: absolute; right: 5px;" *ngIf = "showButton==element.id" (click)="openDialogPut(element.id)">
         <mat-icon>edit</mat-icon>
       </button>
       <mat-card-header>
@@ -11,7 +11,7 @@
       </mat-card-header>
       <img mat-card-image src="{{element.image}}" alt="image post">
       <mat-card-content>
-        <p> {{element.post}} </p>
+        <p style="word-break: break-all;"> {{element.post}} </p>
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
@@ -22,4 +22,4 @@
   <button mat-fab color="warn"  class="bottIn"  (click)="openDialogPost()">
     <mat-icon>add</mat-icon>
   </button>
-</div>
+</div> 

@@ -16,14 +16,17 @@
   height: 20px;
 }
 .bott{
-  display: flex;
-  justify-content: center;
+  position:absolute;
+  bottom:0;
+  width:100%;
+
 }
 .bottIn{
-  margin-top: 20px;
-  margin-bottom: 20px;
+  float: right;
+  margin-bottom: 10px;
+  margin-right: 5px;
 }
 :host >>> ngx-skeleton-loader .loader{
   height: 30px;
 }
-  
+   

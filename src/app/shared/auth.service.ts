@@ -1,74 +1,79 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, ReplaySubject } from 'rxjs';
 import datiAutenticazione from './password.json';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class AuthService {
-
-
-  constructor(private router: Router) { 
-  }
+  private auth2!: gapi.auth2.GoogleAuth;
+  private subject = new ReplaySubject<gapi.auth2.GoogleUser>(1);
   DATA_ELEMENT: Array<any> = datiAutenticazione;
   isAuthenticated:boolean = JSON.parse(localStorage.getItem('loggedIn') || 'false');
-  
 
-  public isLogged(u:string, p:string){ 
-    
-    if(this.DATA_ELEMENT.find(x=>x.user == u).user == u){ 
-      if(this.DATA_ELEMENT.find(x=>x.pass == p).pass == p){
-        this.isAuthenticated =  true;
-        console.log(this.isAuthenticated);
-        this.router.navigate(['']);
-        localStorage.setItem('loggedIn', 'true');
-        return true;
-      }
-    }
-    return false;
+
+  constructor(private router: Router) {
+  	gapi.load('auth2', () => {
+  		this.auth2 = gapi.auth2.init({
+  			client_id: '111898526119-bip3c2ncalj0hfe5s3k4cop1dde36tok.apps.googleusercontent.com'
+  		});
+  	});
   }
 
-  public isLoggedGoogle(){
-    this.isAuthenticated =  true;
-    localStorage.setItem('loggedIn', 'true');
-    return true; 
+  // LOGIN / LOGOUT CREDENZIALI LOCALI
+  public isLogged(u:string, p:string) {
+  	if (this.DATA_ELEMENT.find((x) => x.user == u)) {
+  		if (this.DATA_ELEMENT.find((x) => x.pass == p)) {
+  			this.isAuthenticated = true;
+  			console.log(this.isAuthenticated);
+  			localStorage.setItem('loggedIn', 'true');
+  			this.router.navigate(['']).then(() => {
+  				window.location.reload();
+  			});
+  			return true;
+  		}
+  	}
+  	return false;
   }
 
-  public setFalse(){
-    localStorage.setItem('loggedIn', 'false');
-    return this.isAuthenticated;
+  public setFalse() {
+  	this.isAuthenticated = false;
+  	console.log(this.isAuthenticated);
+  	localStorage.setItem('loggedIn', 'false');
+  	return this.isAuthenticated;
   }
 
-  get controlLog(){
-    return JSON.parse(localStorage.getItem('loggedIn') || this.isAuthenticated.toString());
+  // GET PER "canActivate"
+  get controlLog() {
+  	return JSON.parse(localStorage.getItem('loggedIn') || this.isAuthenticated.toString());
+  }
+
+  // LOGIN / LOGOUT GOOGLE
+  public signIn() {
+  	this.auth2.signIn().then((user) => {
+  		this.subject.next(user);
+  		this.isAuthenticated = true;
+  		localStorage.setItem('loggedIn', 'true');
+  		this.router.navigate(['']).then(() => {
+  			window.location.reload();
+  		});
+  	}).catch(() => {
+  		this.subject.next();
+  	});
+  }
+
+  public signOut() {
+  	this.auth2.signOut().then(() => {
+  		this.subject.next();
+  	}).then(() => {
+  		localStorage.setItem('loggedIn', 'false');
+  		this.isAuthenticated = false;
+  		return this.isAuthenticated;
+  	});
+  }
+
+  public observable():Observable<gapi.auth2.GoogleUser> {
+  	return this.subject.asObservable();
   }
 }
-
-
-
-
-
-
-//DATA_ELEMENT: Observable<any> = this.http.get('http://localhost:3000/users');
-
-// us:any;
-  // pa:any;
-
-  // public isLogged(u:string, p:string){
-    
-  //   this.DATA_ELEMENT.subscribe(response=>{
-  //     this.us=response.user;
-  //     this.pa=response.pa;
-  //   });
-
-  //   if(this.us.find(x=>x.user == u).user == u){ 
-  //     if(this.pa.find(x=>x.pass == p).pass == p){
-  //       this.isAuthenticated =  true;
-  //       console.log(this.isAuthenticated);
-  //       this.router.navigate(['']);
-  //       localStorage.setItem('loggedIn', 'true');
-  //       return true;
-  //     }
-  //   }
-  //   return false;
-  // }

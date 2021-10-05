@@ -14,14 +14,15 @@
           Insiscri una password valida
         </mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" type="submit" (click)="turnOn()">Login</button>
+      <button mat-raised-button color="primary" type="submit">Login</button>
       <p style="padding-top: 10px;padding-bottom: 10px;">Oppure</p>
     </form>
     <div class="g_center">
-      <button mat-raised-button type="submit" (click)="signInHandler()" class="google-sigin-in">
+      <button mat-raised-button type="submit" (click)="signIn()" *ngIf="user==null" class="google-sigin-in">
         <img [src]="'assets/g-logo.png'" alt="google">
         <span>Login con Google</span>
       </button>
+      <p *ngIf="user!=null">Sei già Loggato con Google</p>
     </div>
   </mat-card-content>
 </mat-card> 
