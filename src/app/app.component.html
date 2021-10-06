@@ -1,12 +1,25 @@
  <!--TOOLBAR-->
-<mat-toolbar color="primary" md-scroll-shrink>
+<mat-toolbar class="menu"color="primary" md-scroll-shrink> 
   <button mat-icon-button type="button" aria-label="Toggle sidenav" (click)="drawer.toggle()" *ngIf="isHandset$ | async">
     <mat-icon >menu</mat-icon>
   </button>
   <a routerLink="" class="titolo">{{title}}</a>
   <span class="example-spacer"></span>
+  <p>Tema:</p>
+  <div *ngIf="this.themeColor === 'lightMode'; else darkOn">
+    <button mat-icon-button mat-button="" (click)="themeSwitcher()" >
+      <mat-icon>light_mode</mat-icon>
+    </button>
+  </div>
+  <ng-template #darkOn>
+    <button mat-icon-button mat-button="" (click)="themeSwitcher()" >
+      <mat-icon>dark_mode</mat-icon>
+    </button>
+  </ng-template>
+  
+  
   <a routerLink="login" class="titolo" *ngIf="isVisible===false">{{accedi}}</a>
-  <button mat-icon-button [matMenuTriggerFor]="option" class="example-icon" aria-label="Example icon-button with share icon" *ngIf="isVisible==true">
+  <button mat-icon-button [matMenuTriggerFor]="option" class="example-icon" aria-label="Example icon-button with share icon" *ngIf="isVisible===true">
     <mat-icon >account_circle</mat-icon>
     <mat-menu #option="matMenu">
       <a mat-menu-item routerLink="" (click)="setOff()">

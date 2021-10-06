@@ -16,8 +16,10 @@ body {
 }
 #footer{
   width: 100%;
-  position: absolute;
-  clear: both;
+  position: sticky;
+  position: -webkit-sticky;
+  bottom: 0; 
+  z-index: 1000; 
   
 }
 .example-spacer {
@@ -77,5 +79,14 @@ section {
   .sidenav {
     width: 180px;
   }
+  .menu{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0; 
+    z-index: 1000; 
+  }
 
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,8 +1,5 @@
-import { Injectable, Directive, Output, EventEmitter } from '@angular/core';
-import { User } from './user';
-import list from './data-for-table.json';
-import dati from './grid-data.json';
-import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -11,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class MyService {
 	constructor(private http: HttpClient) {
-		console.log('Chiamato');
+		
 	}
 
 	// ritorna le info per la tabella
@@ -37,6 +34,9 @@ export class MyService {
   	this.meteoData = fetch('https://api.openweathermap.org/data/2.5/weather?q=genoa&appid=e59773b90111c69daaa8f3243237690c').then((response) => response.json());
   	return new Promise((resolve) => setTimeout(resolve, 500, this.meteoData));
   }
+
+  
+
 }
 
 

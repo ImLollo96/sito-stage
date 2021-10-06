@@ -32,6 +32,7 @@ import { DialogGridComponent } from './dialog-grid/dialog-grid.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 		MatDialogModule,
 		MatProgressBarModule,
 		MaterialFileInputModule,
-		NgxSkeletonLoaderModule
+		NgxSkeletonLoaderModule,
+		MatSlideToggleModule
 	],
 	providers: [AuthGuard,
 		{

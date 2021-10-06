@@ -1,13 +1,13 @@
 <mat-grid-list [cols]="breakpoint" rowHeight="600px" (window:resize)="onResize($event)">
   <mat-grid-tile *ngFor="let element of DATA_ELEMENT">
-    <mat-card class="example-card" (mouseover)="showButton = element.id" (mouseleave)="showButton = false">
-      <button mat-mini-fab style="background-color: coral; position: absolute; right: 5px;" *ngIf = "showButton==element.id" (click)="openDialogPut(element.id)">
+    <mat-card class="example-card" (mouseover)="showButton = element.id" (mouseleave)="showButton = false" style="color:black">
+      <button mat-mini-fab style="background-color: coral; position: absolute; right: 5px;" *ngIf = "showButton===element.id" (click)="openDialogPut(element.id)">
         <mat-icon>edit</mat-icon>
       </button>
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"><img mat-card-image src="{{element.icon}}" alt="image post"></div>
         <mat-card-title>{{element.title}}</mat-card-title>
-        <mat-card-subtitle> {{element.position}} </mat-card-subtitle>
+        <mat-card-subtitle style="color: black;"> {{element.position}} </mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image src="{{element.image}}" alt="image post">
       <mat-card-content>
@@ -15,11 +15,14 @@
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
+  
+    <button mat-fab color="warn"  class="bottIn"  (click)="openDialogPost()">
+      <mat-icon>add</mat-icon>
+    </button>
+  
 </mat-grid-list>
 <ngx-skeleton-loader count="{{totalCount}}" appearance="circle" *ngIf="loader"></ngx-skeleton-loader>
 
-<div class="bott">
-  <button mat-fab color="warn"  class="bottIn"  (click)="openDialogPost()">
-    <mat-icon>add</mat-icon>
-  </button>
-</div> 
+
+  
+
