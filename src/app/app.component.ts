@@ -16,6 +16,7 @@ export class AppComponent {
   accedi= 'ACCEDI';
   user!: gapi.auth2.GoogleUser;
   isVisible:boolean = false;
+  color:any;
 
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -46,8 +47,8 @@ export class AppComponent {
   }
 
 
-  //THEME CHANGE
-  themeColor:any = 'lightMode';
+  //THEME CHANGE NORMAL
+  themeColor:any = 'lightMode-normal';
 
   setDefaultTheme(){
 
@@ -61,13 +62,26 @@ export class AppComponent {
   themeSwitcher(){
     const body = document.getElementsByTagName('body')[0];
     body.classList.remove(this.themeColor);
-    (this.themeColor == 'lightMode')?this.themeColor = 'darkMode':this.themeColor = 'lightMode';
+    (this.themeColor == 'lightMode-normal')?this.themeColor = 'darkMode-normal':this.themeColor = 'lightMode-normal';
     body.classList.add(this.themeColor);
     localStorage.setItem('Theme',this.themeColor);
   }
 
-  get controlTheme(){
-    return this.themeColor;
+  // get controlTheme(){
+  //   return this.themeColor;
+  // }
+
+
+  //THEME CHANGE SPECIAL
+
+  storedTheme:any;
+
+  setTheme(theme){
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.remove(this.themeColor);
+    localStorage.setItem('Theme',theme);
+    this.themeColor = localStorage.getItem('Theme');
+    body.classList.add(this.themeColor);
   }
 
   //TRANSLATE

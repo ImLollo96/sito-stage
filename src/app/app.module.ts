@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +37,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -92,6 +95,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 				}
 			}
 		),
+		ColorPickerModule,
+		MatButtonToggleModule
 	],
 	providers: [AuthGuard,HttpClient,
 		{
