@@ -18,7 +18,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { LoginComponent } from './login/login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -33,6 +33,14 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatSelectModule} from '@angular/material/select';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
 
 
 @NgModule({
@@ -73,9 +81,19 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 		MatProgressBarModule,
 		MaterialFileInputModule,
 		NgxSkeletonLoaderModule,
-		MatSlideToggleModule
+		MatSlideToggleModule,
+		MatSelectModule,
+		TranslateModule.forRoot(
+			{
+				loader: {
+					provide: TranslateLoader,
+					useFactory: HttpLoaderFactory,
+					deps: [HttpClient]
+				}
+			}
+		),
 	],
-	providers: [AuthGuard,
+	providers: [AuthGuard,HttpClient,
 		{
 			provide: 'SocialAuthServiceConfig',
 			useValue: {

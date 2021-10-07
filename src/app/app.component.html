@@ -5,6 +5,15 @@
   </button>
   <a routerLink="" class="titolo">{{title}}</a>
   <span class="example-spacer"></span>
+  <div style="font-size: 12px">
+    <mat-form-field appearance="outline" >
+      <mat-select [(value)]="lang" (selectionChange)="selectLanguage($event.value)" style="font-size: 15px;">
+        <mat-option value="it">Italiano</mat-option>
+        <mat-option value="en">Inglese</mat-option>
+      </mat-select>
+      <mat-icon matSuffix>translate</mat-icon>
+    </mat-form-field>
+  </div>
   <p>Tema:</p>
   <div *ngIf="this.themeColor === 'lightMode'; else darkOn">
     <button mat-icon-button mat-button="" (click)="themeSwitcher()" >

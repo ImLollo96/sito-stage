@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from './shared/auth.service';
-import { MyService } from './my.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -25,9 +25,11 @@ export class AppComponent {
   );
 
 
-  constructor(private breakpointObserver: BreakpointObserver, private auth: AuthService, private myService: MyService) {
+  constructor(private breakpointObserver: BreakpointObserver, private auth: AuthService, private translateS: TranslateService) {
   	this.setOn();
     this.setDefaultTheme();
+    this.translateS.setDefaultLang('it');
+    this.translateS.use(localStorage.getItem('lang') || 'it');
   }
 
   setOff() {
@@ -66,6 +68,19 @@ export class AppComponent {
 
   get controlTheme(){
     return this.themeColor;
+  }
+
+  //TRANSLATE
+
+  lang;
+
+  ngOnInit(): void {
+  	this.lang = localStorage.getItem('lang') || 'it';
+  } 
+
+  selectLanguage(lang){
+    localStorage.setItem('lang', lang);
+    window.location.reload();
   }
 
 }

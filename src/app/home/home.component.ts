@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MyService } from '../my.service';
 import { AppComponent } from '../app.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   theme:any;
 
-  constructor(private myservice:MyService, private aComp: AppComponent) {
+  constructor(private myservice:MyService, private aComp: AppComponent,private translateS: TranslateService) {
   	this.meteoData = this.ELEMENT_DATA;
     
   }
