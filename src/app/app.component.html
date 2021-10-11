@@ -33,12 +33,12 @@
           <mat-icon style="padding-left: 10px;" matSuffix>translate</mat-icon>
         </mat-form-field>
       </a>
-      <a mat-menu-item (click)="$event.stopPropagation()" [style.color]="color"
+      <a mat-menu-item (click)="$event.stopPropagation()" [style.background]="color"
       [cpPosition]="'bottom'"
       [cpPositionOffset]="'-50%'"
       [cpPositionRelativeToArrow]="true"
       [(colorPicker)]="color">
-        <mat-icon [style.color]="color">format_color_fill</mat-icon>
+        <mat-icon >format_color_fill</mat-icon>
         <span><strong>{{'colore'| translate}}</strong></span>
       </a>
       <button mat-menu-item [matMenuTriggerFor]="belowMenu" (click)="$event.stopPropagation()">
@@ -57,7 +57,6 @@
             <mat-button-toggle (click)="setTheme('lightMode-green');$event.stopPropagation();" style="width: 50%;">{{'gl'| translate}}</mat-button-toggle>
             <mat-button-toggle (click)="setTheme('darkMode-green');$event.stopPropagation();" style="width: 50%;">{{'gd'| translate}}</mat-button-toggle>
           </mat-button-toggle-group>
-          
         </mat-menu>
       </button>
     </mat-menu>
