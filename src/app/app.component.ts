@@ -15,8 +15,8 @@ export class AppComponent{
   title = 'My Site';
   accedi= 'ACCEDI';
   user!: gapi.auth2.GoogleUser;
-  isVisible:boolean = false;
-  color:any;
+  isVisible: boolean = false;
+  color: any;
   
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
@@ -71,6 +71,12 @@ export class AppComponent{
 
 
   //THEME CHANGE SPECIAL
+
+  setColor(color) {
+    console.log(color)
+    document.documentElement.style.setProperty('--mat-primary-500', color);
+    // calcolo chiaro, scuro, e contrast
+  }
 
   setTheme(theme){
     const body = document.getElementsByTagName('body')[0];

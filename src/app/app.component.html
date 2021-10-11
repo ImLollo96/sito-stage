@@ -37,7 +37,10 @@
       [cpPosition]="'bottom'"
       [cpPositionOffset]="'-50%'"
       [cpPositionRelativeToArrow]="true"
-      [(colorPicker)]="color">
+      [(colorPicker)]="color"
+      [cpOKButton]="true"
+      (colorPickerSelect)="setColor($event)"
+      >
         <mat-icon >format_color_fill</mat-icon>
         <span><strong>{{'colore'| translate}}</strong></span>
       </a>

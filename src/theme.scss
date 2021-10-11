@@ -2,9 +2,9 @@
 @include mat-core();
 //LIGHT THEME
 $mat-primary-scheme: (
-  100: #6b6f94,
-  500: #1700e9,
-  700: #d33100,
+  100: var(--mat-primary-100, #6b6f94),
+  500: var(--mat-primary-500, #1700e9),
+  700: var(--mat-primary-700, #d33100),
   contrast: (
     100: rgba(0,0,0,0.87),
     500: #ffffff,
@@ -23,8 +23,8 @@ $mat-accent-scheme: (
 );
 //DARK THEME
 $mat-primary-scheme-dark: (
-  100: #6b6f94,
-  500: #96133a,
+  100: var(--mat-primary-100,#6b6f94),
+  500: var(--mat-primary-500,#96133a),
   700: #862305,
   contrast: (
     100: rgba(0,0,0,0.87),
@@ -67,7 +67,7 @@ $app-dark-theme: mat-dark-theme($mat-primary-palette-dark, $mat-accent-palette-d
 /* #region BROWN THEME  */
 $mat-primary-scheme-brown: (
   100: #fff,
-  500: #5b2c2c,
+  500: var(--mat-primary-500, #5b2c2c),
   700: #fff,
   contrast: (
     100: rgba(0,0,0,0.87),
@@ -104,7 +104,7 @@ $app-dark-theme-brown: mat-dark-theme($mat-primary-palette-brown, $mat-accent-pa
 /* #region  PURPLE THEME */
 $mat-primary-scheme-purple: (
   100: #cfc0ea,
-  500: #673AB7,
+  500: var(--mat-primary-500, #673AB7),
   700: #512da8,
   contrast: (
     100: rgba(0,0,0,0.87),
@@ -140,7 +140,7 @@ $app-dark-theme-purple: mat-dark-theme($mat-primary-palette-purple, $mat-accent-
 /* #region  GREEN THEME */
 $mat-primary-scheme-green: (
   100: #d1c4e9,
-  500: #38b947,
+  500: var(--mat-primary-500, #38b947),
   700: #512da8,
   contrast: (
     100: rgba(0,0,0,0.87),
