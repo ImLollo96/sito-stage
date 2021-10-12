@@ -4,9 +4,15 @@
 
 //LIGHT THEME
 $mat-primary-scheme: (
+<<<<<<< HEAD
   100: var(--mat-primary-100, #703fff),
   500: var(--mat-primary-500, #1700e9),
   700: var(--mat-primary-700, #0000b5),
+=======
+  100: var(--mat-primary-100, #6b6f94),
+  500: var(--mat-primary-500, #1700e9),
+  700: var(--mat-primary-700, #d33100),
+>>>>>>> 9b6fd652713fbf013978c7b5cb56ebe471db0893
   contrast: (
     100: rgba(0,0,0,0.87),
     500: var(--mat-contrast-500,#ffffff),
@@ -25,9 +31,15 @@ $mat-accent-scheme: (
 );
 //DARK THEME
 $mat-primary-scheme-dark: (
+<<<<<<< HEAD
   100: var(--mat-primary-100,#cc4b64),
   500: var(--mat-primary-500,#96133a),
   700: #620015,
+=======
+  100: var(--mat-primary-100,#6b6f94),
+  500: var(--mat-primary-500,#96133a),
+  700: #862305,
+>>>>>>> 9b6fd652713fbf013978c7b5cb56ebe471db0893
   contrast: (
     100: rgba(0,0,0,0.87),
     500: var(--mat-contrast-500,#ffffff),
@@ -68,9 +80,15 @@ $app-dark-theme: mat-dark-theme($mat-primary-palette-dark, $mat-accent-palette-d
 
 /* #region BROWN THEME  */
 $mat-primary-scheme-brown: (
+<<<<<<< HEAD
   100: #8a5655,
   500: var(--mat-primary-500, #5b2c2c),
   700: #300400,
+=======
+  100: #fff,
+  500: var(--mat-primary-500, #5b2c2c),
+  700: #fff,
+>>>>>>> 9b6fd652713fbf013978c7b5cb56ebe471db0893
   contrast: (
     100: rgba(0,0,0,0.87),
     500: #ffffff,
@@ -141,9 +159,15 @@ $app-dark-theme-purple: mat-dark-theme($mat-primary-palette-purple, $mat-accent-
 
 /* #region  GREEN THEME */
 $mat-primary-scheme-green: (
+<<<<<<< HEAD
   100: #72ec76,
   500: var(--mat-primary-500, #38b947),
   700: #008816,
+=======
+  100: #d1c4e9,
+  500: var(--mat-primary-500, #38b947),
+  700: #512da8,
+>>>>>>> 9b6fd652713fbf013978c7b5cb56ebe471db0893
   contrast: (
     100: rgba(0,0,0,0.87),
     500: #fff,

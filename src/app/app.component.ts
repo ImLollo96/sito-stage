@@ -17,9 +17,13 @@ export class AppComponent{
   accedi= 'ACCEDI';
   user!: gapi.auth2.GoogleUser;
   isVisible: boolean = false;
+<<<<<<< HEAD
   color:any;
   colorSet: any;
   theme:any;
+=======
+  color: any;
+>>>>>>> 9b6fd652713fbf013978c7b5cb56ebe471db0893
   
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
@@ -73,6 +77,7 @@ export class AppComponent{
   //THEME CHANGE SPECIAL
 
   setColor(color) {
+<<<<<<< HEAD
     localStorage.setItem('holdC',color);
     document.documentElement.style.setProperty('--mat-primary-500', color);
     this.setTheme('picker');
@@ -81,6 +86,13 @@ export class AppComponent{
   }
 
   
+=======
+    console.log(color)
+    document.documentElement.style.setProperty('--mat-primary-500', color);
+    // calcolo chiaro, scuro, e contrast
+  }
+
+>>>>>>> 9b6fd652713fbf013978c7b5cb56ebe471db0893
   setTheme(theme){
     if(theme=='blue'){
       this.colorSet='#1700e9'
