@@ -13,11 +13,9 @@
     "tema":"Tema",
     "meteo":"Il Meteo adesso:",
     "colore":"Scegli il colore",
-    "ml":"Marrone Light",
-    "md":"Marrone Dark",
-    "vl":"Viola Light",
-    "vd":"Viola Dark",
-    "gl":"Verde Light",
-    "gd":"Verde Dark",
+    "bl":"Tema Blu",
+    "ml":"Tema Marrone",
+    "vl":"Tema Viola",
+    "gl":"Tema Verde",
     "sceglitema":"Scegli Tema"
 }

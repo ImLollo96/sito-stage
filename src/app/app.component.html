@@ -3,16 +3,37 @@
   <button mat-icon-button type="button" aria-label="Toggle sidenav" (click)="drawer.toggle()" *ngIf="isHandset$ | async">
     <mat-icon >menu</mat-icon>
   </button>
-  <a routerLink="" class="titolo">{{title}}</a>
+  <a mat-button routerLink="" class="titolo" >{{title}}</a>
   <span class="example-spacer"></span>
   
-  <a routerLink="login" class="titolo" *ngIf="isVisible===false">{{accedi}}</a>
+  <a mat-button routerLink="login" class="titolo" *ngIf="isVisible===false">{{accedi}}</a><span></span>
   <button mat-icon-button [matMenuTriggerFor]="option" class="example-icon" aria-label="Example icon-button with share icon" *ngIf="isVisible===true">
     <mat-icon >account_circle</mat-icon>
     <mat-menu #option="matMenu">
       <a mat-menu-item routerLink="" (click)="setOff()">
         <mat-icon>logout</mat-icon>
         <span>LogOut</span>
+      </a>
+      <a  mat-menu-item style="height: 55px; width: 220px;" (click)="$event.stopPropagation()">
+        <mat-form-field  appearance="outline" style="font-size: 12px; width: 100%;">
+          <mat-select [(value)]="lang" (selectionChange)="selectLanguage($event.value)" style="font-size: 15px;">
+            <mat-option value="it">Italiano</mat-option>
+            <mat-option value="en">English</mat-option>
+          </mat-select>
+          <mat-icon style="padding-left: 10px;" matSuffix>translate</mat-icon>
+        </mat-form-field>
+      </a>
+      <a  mat-menu-item style="height: 55px; width: 220px;" (click)="$event.stopPropagation()">
+        <mat-form-field  appearance="outline" style="font-size: 12px; width: 100%;">
+          <mat-select [(value)]="theme" (selectionChange)="setTheme($event.value)" style="font-size: 15px;">
+            <mat-option value="blue">{{'bl'| translate}}</mat-option>
+            <mat-option value="brown">{{'ml'| translate}}</mat-option>
+            <mat-option value="purple">{{'vl'| translate}}</mat-option>
+            <mat-option value="green">{{'gl'| translate}}</mat-option>
+            <mat-option value="picker" [ngStyle]="{display:'none'}">Picker</mat-option>
+          </mat-select>
+          <mat-icon style="padding-left: 10px;" matSuffix>format_color_fill</mat-icon>
+        </mat-form-field>
       </a>
       <a mat-menu-item *ngIf="this.themeColor === 'lightMode-normal'; else darkOn" (click)="themeSwitcher();$event.stopPropagation();">
         <mat-icon>light_mode</mat-icon>
@@ -24,41 +45,17 @@
           <span>{{'tema'| translate}}</span>
         </a>
       </ng-template>
-      <a  mat-menu-item style="height: 55px; width: 200px;" (click)="$event.stopPropagation()">
-        <mat-form-field  appearance="outline" style="font-size: 12px; width: 100%;">
-          <mat-select [(value)]="lang" (selectionChange)="selectLanguage($event.value)" style="font-size: 15px;">
-            <mat-option value="it">Italiano</mat-option>
-            <mat-option value="en">English</mat-option>
-          </mat-select>
-          <mat-icon style="padding-left: 10px;" matSuffix>translate</mat-icon>
-        </mat-form-field>
-      </a>
       <a mat-menu-item (click)="$event.stopPropagation()" [style.background]="color"
       [cpPosition]="'bottom'"
       [cpPositionOffset]="'-50%'"
       [cpPositionRelativeToArrow]="true"
-      [(colorPicker)]="color">
+      [(colorPicker)]="color"
+      [cpOKButton]="true"
+      (colorPickerSelect)="setColor($event)"
+      >
         <mat-icon >format_color_fill</mat-icon>
         <span><strong>{{'colore'| translate}}</strong></span>
       </a>
-      <button mat-menu-item [matMenuTriggerFor]="belowMenu" (click)="$event.stopPropagation()">
-        <mat-icon>format_color_fill</mat-icon>
-        {{'sceglitema'| translate}}
-        <mat-menu #belowMenu="matMenu" yPosition="below">
-          <mat-button-toggle-group style="width: 100%;">
-            <mat-button-toggle (click)="setTheme('lightMode-brown');$event.stopPropagation();" style="width: 50%;">{{'ml'| translate}}</mat-button-toggle>
-            <mat-button-toggle (click)="setTheme('darkMode-brown');$event.stopPropagation();" style="width: 50%;">{{'md'| translate}}</mat-button-toggle>
-          </mat-button-toggle-group >
-          <mat-button-toggle-group style="width: 100%;">
-            <mat-button-toggle (click)="setTheme('lightMode-purple');$event.stopPropagation();" style="width: 50%;">{{'vl'| translate}}</mat-button-toggle>
-            <mat-button-toggle (click)="setTheme('darkMode-purple');$event.stopPropagation();" style="width: 50%;">{{'vd'| translate}}</mat-button-toggle>
-          </mat-button-toggle-group>
-          <mat-button-toggle-group style="width: 100%;">
-            <mat-button-toggle (click)="setTheme('lightMode-green');$event.stopPropagation();" style="width: 50%;">{{'gl'| translate}}</mat-button-toggle>
-            <mat-button-toggle (click)="setTheme('darkMode-green');$event.stopPropagation();" style="width: 50%;">{{'gd'| translate}}</mat-button-toggle>
-          </mat-button-toggle-group>
-        </mat-menu>
-      </button>
     </mat-menu>
   </button>
   <button mat-icon-button [matMenuTriggerFor]="share" class="example-icon" aria-label="Example icon-button with share icon">
@@ -121,3 +118,21 @@
     </mat-toolbar>
   </div>
 </footer>
+
+
+
+
+<!-- <mat-menu #belowMenu="matMenu" yPosition="below">
+  <mat-button-toggle-group style="width: 100%;">
+    <mat-button-toggle (click)="setTheme('lightMode-brown');$event.stopPropagation();" style="width: 50%;">{{'ml'| translate}}</mat-button-toggle>
+    <mat-button-toggle (click)="setTheme('darkMode-brown');$event.stopPropagation();" style="width: 50%;">{{'md'| translate}}</mat-button-toggle>
+  </mat-button-toggle-group >
+  <mat-button-toggle-group style="width: 100%;">
+    <mat-button-toggle (click)="setTheme('lightMode-purple');$event.stopPropagation();" style="width: 50%;">{{'vl'| translate}}</mat-button-toggle>
+    <mat-button-toggle (click)="setTheme('darkMode-purple');$event.stopPropagation();" style="width: 50%;">{{'vd'| translate}}</mat-button-toggle>
+  </mat-button-toggle-group>
+  <mat-button-toggle-group style="width: 100%;">
+    <mat-button-toggle (click)="setTheme('lightMode-green');$event.stopPropagation();" style="width: 50%;">{{'gl'| translate}}</mat-button-toggle>
+    <mat-button-toggle (click)="setTheme('darkMode-green');$event.stopPropagation();" style="width: 50%;">{{'gd'| translate}}</mat-button-toggle>
+  </mat-button-toggle-group>
+</mat-menu> -->

@@ -96,7 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 			}
 		),
 		ColorPickerModule,
-		MatButtonToggleModule
+		MatButtonToggleModule,
 	],
 	providers: [AuthGuard,HttpClient,
 		{

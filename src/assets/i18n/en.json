@@ -13,11 +13,9 @@
     "tema":"Theme",
     "meteo":"The current Weather:",
     "colore":"Choose the color",
-    "ml":"Brown Light",
-    "md":"Brown Dark",
-    "vl":"Violet Light",
-    "vd":"Violet Dark",
-    "gl":"Green Light",
-    "gd":"Green Dark",
+    "bl":"Blue Theme",
+    "ml":"Brown Theme",
+    "vl":"Violet Theme",
+    "gl":"Green Theme",
     "sceglitema":"Choose Theme"
 }

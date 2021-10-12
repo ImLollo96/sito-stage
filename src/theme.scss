@@ -1,13 +1,15 @@
 @import '~@angular/material/theming';
 @include mat-core();
+
+
 //LIGHT THEME
 $mat-primary-scheme: (
-  100: #6b6f94,
-  500: #1700e9,
-  700: #d33100,
+  100: var(--mat-primary-100, #703fff),
+  500: var(--mat-primary-500, #1700e9),
+  700: var(--mat-primary-700, #0000b5),
   contrast: (
     100: rgba(0,0,0,0.87),
-    500: #ffffff,
+    500: var(--mat-contrast-500,#ffffff),
     700: #ffffff,
   )
 );
@@ -23,19 +25,19 @@ $mat-accent-scheme: (
 );
 //DARK THEME
 $mat-primary-scheme-dark: (
-  100: #6b6f94,
-  500: #96133a,
-  700: #862305,
+  100: var(--mat-primary-100,#cc4b64),
+  500: var(--mat-primary-500,#96133a),
+  700: #620015,
   contrast: (
     100: rgba(0,0,0,0.87),
-    500: #ffffff,
+    500: var(--mat-contrast-500,#ffffff),
     700: #ffffff,
   )
 );
 $mat-accent-scheme-dark: (
-  100: #ffe57f,
+  100: #ffff58,
   500: #e1fa00,
-  700: #ffc400,
+  700: #abc700,
   contrast: (
     100: rgba(0,0,0,0.87),
     500: rgba(0,0,0,0.87),
@@ -66,9 +68,9 @@ $app-dark-theme: mat-dark-theme($mat-primary-palette-dark, $mat-accent-palette-d
 
 /* #region BROWN THEME  */
 $mat-primary-scheme-brown: (
-  100: #fff,
-  500: #5b2c2c,
-  700: #fff,
+  100: #8a5655,
+  500: var(--mat-primary-500, #5b2c2c),
+  700: #300400,
   contrast: (
     100: rgba(0,0,0,0.87),
     500: #ffffff,
@@ -76,9 +78,9 @@ $mat-primary-scheme-brown: (
   )
 );
 $mat-accent-scheme-brown: (
-  100: #ffe57f,
+  100: #ffae49,
   500: #e87e13,
-  700: #ffc400,
+  700: #af5000,
   contrast: (
     100: rgba(0,0,0,0.87),
     500: rgba(0,0,0,0.87),
@@ -104,7 +106,7 @@ $app-dark-theme-brown: mat-dark-theme($mat-primary-palette-brown, $mat-accent-pa
 /* #region  PURPLE THEME */
 $mat-primary-scheme-purple: (
   100: #cfc0ea,
-  500: #673AB7,
+  500: var(--mat-primary-500, #673AB7),
   700: #512da8,
   contrast: (
     100: rgba(0,0,0,0.87),
@@ -113,9 +115,9 @@ $mat-primary-scheme-purple: (
   )
 );
 $mat-accent-scheme-purple: (
-  100: #ffe57f,
+  100: #6eff52,
   500: #0eec01,
-  700: #ffc400,
+  700: #00b800,
   contrast: (
     100: rgba(0,0,0,0.87),
     500: rgba(31,28,255,0.87),
@@ -139,9 +141,9 @@ $app-dark-theme-purple: mat-dark-theme($mat-primary-palette-purple, $mat-accent-
 
 /* #region  GREEN THEME */
 $mat-primary-scheme-green: (
-  100: #d1c4e9,
-  500: #38b947,
-  700: #512da8,
+  100: #72ec76,
+  500: var(--mat-primary-500, #38b947),
+  700: #008816,
   contrast: (
     100: rgba(0,0,0,0.87),
     500: #fff,

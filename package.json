@@ -31,6 +31,7 @@
     "angularx-social-login": "^4.0.1",
     "express": "^4.17.1",
     "file-system": "^2.2.2",
+    "font-color-contrast": "^1.1.1",
     "ngx-color-picker": "^11.0.0",
     "ngx-material-file-input": "^2.1.1",
     "ngx-skeleton-loader": "^4.0.0",

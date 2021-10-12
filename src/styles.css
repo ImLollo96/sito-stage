@@ -67,7 +67,7 @@ section {
     width: 100%;
   }
   .titolo{
-      color: white;
+      font-size: 25px;
       text-decoration: none;
   }
   .example-events {
