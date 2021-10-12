@@ -77,7 +77,54 @@ export class AppComponent{
     document.documentElement.style.setProperty('--mat-primary-500', color);
     this.setTheme('picker');
     window.location.reload();
-    // calcolo chiaro, scuro, e contrast
+  }
+
+  //Converti in RGB
+  parseColor(hex) {
+    let r = 0, g = 0, b = 0;
+    const match = hex.match(/^#([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])$/);
+    if (match) {
+        r = parseInt(match[1], 16);
+        g = parseInt(match[2], 16);
+        b = parseInt(match[3], 16);
+    } else {
+        const sMatch = hex.match(/^#([0-9a-f])([0-9a-f])([0-9a-f])$/);
+        if (sMatch) {
+            r = parseInt(`${sMatch[1]}${sMatch[1]}`, 16);
+            g = parseInt(`${sMatch[2]}${sMatch[2]}`, 16);
+            b = parseInt(`${sMatch[3]}${sMatch[3]}`, 16);
+        }
+    }
+    return { r, g, b };
+  }
+
+  //CALCOLO LUMINOSITà
+  isBright(color) {
+    const { r, g, b } = this.parseColor(color);
+    const luminance = (r * 0.299 + g * 0.587 + b * 0.114);
+    return luminance > 90;
+  }
+
+//Scuro
+  shade(color, factor = 0.75) {
+    const { r, g, b } = this.parseColor(color);
+    const nextColor = [
+        Math.round(r * factor),
+        Math.round(g * factor),
+        Math.round(b * factor)
+    ];
+    return `#${nextColor.map((c = 0) => (c.toString(16).padStart(2, '0'))).join('')}`
+  }
+
+//Chiaro
+  tint(color, factor = 0.25) {
+    const { r, g, b } = this.parseColor(color);
+    const nextColor = [
+        Math.min(Math.round(r + (factor * (255 - r)))),
+        Math.min(Math.round(g + (factor * (255 - g)))),
+        Math.min(Math.round(b + (factor * (255 - b)))),
+    ];
+    return `#${nextColor.map((c = 0) => (c.toString(16).padStart(2, '0'))).join('')}`
   }
 
   
@@ -104,34 +151,18 @@ export class AppComponent{
       localStorage.setItem('Theme',theme);
     }
 
+    let darker = this.shade(this.colorSet);
+    let brighter = this.tint(this.colorSet);
+    console.log('darker: ',darker,'lighter: ',brighter);
+    document.documentElement.style.setProperty('--mat-primary-100', brighter);
+    document.documentElement.style.setProperty('--mat-primary-700', darker);
+
     let check = this.isBright(this.colorSet);
     if(check === true){
       document.documentElement.style.setProperty('--mat-contrast-500', '#000000');
     }else{
       document.documentElement.style.setProperty('--mat-contrast-500', '#ffffff');
     }
-  }
-
-  //CALCOLO LUMINOSITà
-  isBright(rgb) {
-    let r = 0, g = 0, b = 0;
-
-    const match = rgb.match(/^#([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])$/);
-    if (match) {
-        r = parseInt(match[1], 16);
-        g = parseInt(match[2], 16);
-        b = parseInt(match[3], 16);
-    } else {
-        const sMatch = rgb.match(/^#([0-9a-f])([0-9a-f])([0-9a-f])$/);
-        if (sMatch) {
-            r = parseInt(`${sMatch[1]}${sMatch[1]}`, 16);
-            g = parseInt(`${sMatch[2]}${sMatch[2]}`, 16);
-            b = parseInt(`${sMatch[3]}${sMatch[3]}`, 16);
-        }
-    }
-    const luminance = (r*0.299 + g*0.587 + b*0.114);
-    console.log({ rgb, r, g, b, luminance });
-    return luminance > 90;
   }
 
 
@@ -150,13 +181,3 @@ export class AppComponent{
   }
 
 }
-
-
-
-// setTheme(theme){
-  // const body = document.getElementsByTagName('body')[0];
-    // body.classList.remove(this.themeColor);
-    // localStorage.setItem('Theme',theme);
-    // this.themeColor = localStorage.getItem('Theme');
-    // body.classList.add(this.themeColor);
-// }
