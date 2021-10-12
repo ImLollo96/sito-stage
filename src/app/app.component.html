@@ -6,11 +6,11 @@
   <a mat-button routerLink="" class="titolo" >{{title}}</a>
   <span class="example-spacer"></span>
   
-  <a mat-button routerLink="login" class="titolo" *ngIf="isVisible===false">{{accedi}}</a><span></span>
+  <a mat-button routerLink="login" class="titolo" *ngIf="isVisible===false">{{'accedi'| translate}}</a><span></span>
   <button mat-icon-button [matMenuTriggerFor]="option" class="example-icon" aria-label="Example icon-button with share icon" *ngIf="isVisible===true">
     <mat-icon >account_circle</mat-icon>
     <mat-menu #option="matMenu">
-      <a mat-menu-item routerLink="" (click)="setOff()">
+      <a mat-menu-item routerLink="" (click)="setOff(); openSnackBar()">
         <mat-icon>logout</mat-icon>
         <span>LogOut</span>
       </a>

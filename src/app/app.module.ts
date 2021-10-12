@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ColorPickerModule } from 'ngx-color-picker';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent, LogoutSnackBarComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { TableComponent } from './table/table.component';
@@ -38,6 +38,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { StaffPageComponent } from './staff-page/staff-page.component';
 
 
 
@@ -54,10 +56,12 @@ export function HttpLoaderFactory(http: HttpClient) {
 		GridComponent,
 		LoginComponent,
 		DialogExampleComponent,
-		DialogGridComponent
+		DialogGridComponent,
+		LogoutSnackBarComponent,
+  		StaffPageComponent,
 
 	],
-	entryComponents: [DialogExampleComponent, DialogGridComponent],
+	entryComponents: [DialogExampleComponent, DialogGridComponent,LogoutSnackBarComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
@@ -97,6 +101,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		),
 		ColorPickerModule,
 		MatButtonToggleModule,
+		MatSnackBarModule,
 	],
 	providers: [AuthGuard,HttpClient,
 		{

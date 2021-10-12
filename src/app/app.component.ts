@@ -3,8 +3,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from './shared/auth.service';
-import { TranslateService } from '@ngx-translate/core';
-
+import { TranslateService } from '@ngx-translate/core'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -14,7 +14,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent{
   title = 'My Site';
-  accedi= 'ACCEDI';
   user!: gapi.auth2.GoogleUser;
   isVisible: boolean = false;
   color:any;
@@ -27,7 +26,7 @@ export class AppComponent{
   	shareReplay()
   );
 
-  constructor(private breakpointObserver: BreakpointObserver, private auth: AuthService, private translateS: TranslateService) {
+  constructor(private breakpointObserver: BreakpointObserver, private auth: AuthService, private translateS: TranslateService, private snackBar: MatSnackBar) {
   	this.setOn();
     this.setDefaultTheme();
     this.setTheme(localStorage.getItem('Theme') || 'blue');
@@ -43,7 +42,7 @@ export class AppComponent{
   }
 
   setOn() {
-  	if (this.auth.controlLog == true) {
+  	if (this.auth.controlLog !== false) {
   		this.isVisible = true;
   	}
   }
@@ -153,7 +152,7 @@ export class AppComponent{
 
     let darker = this.shade(this.colorSet);
     let brighter = this.tint(this.colorSet);
-    console.log('darker: ',darker,'lighter: ',brighter);
+    console.log('darker: ',darker,'brighter: ',brighter);
     document.documentElement.style.setProperty('--mat-primary-100', brighter);
     document.documentElement.style.setProperty('--mat-primary-700', darker);
 
@@ -180,4 +179,20 @@ export class AppComponent{
     window.location.reload();
   }
 
+  //SNACKBAR
+  openSnackBar(){
+    this.snackBar.openFromComponent(LogoutSnackBarComponent, {
+      panelClass: 'success',
+      horizontalPosition: 'center',
+      duration:2000,
+    });
+  }
+
 }
+
+ 
+@Component({
+  selector: 'logout-snackbar',
+  template: `<span>Logout eseguito con successo</span>`
+})
+export class LogoutSnackBarComponent{}

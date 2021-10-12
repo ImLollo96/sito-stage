@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogExampleComponent } from '../dialog-example/dialog-example.component';
 import { v4 as uuidv4 } from 'uuid';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class TableComponent implements OnInit {
   dataSource: any;
   ELEMENT_DATA!: any;
 
-  constructor(private myservice:MyService, public fb: FormBuilder, private http: HttpClient, public dialog: MatDialog) {
+  constructor(private myservice:MyService, public fb: FormBuilder, private http: HttpClient, public dialog: MatDialog, private snackBar: MatSnackBar) {
   	this.dataSource = new MatTableDataSource<User>(this.ELEMENT_DATA);
 
   	this.form = fb.group({
@@ -53,6 +54,7 @@ export class TableComponent implements OnInit {
   	this.http.post('/api/users', newUser).subscribe((result) => {
   		this.loadTable();
   		console.log(this.ELEMENT_DATA);
+		this.openSnackBar('inserito');
   	},
   	(error) => {
   		alert('Errore');
@@ -72,8 +74,9 @@ export class TableComponent implements OnInit {
   		this.http.delete('/api/users/' + id).subscribe((result) => {
   			this.subTo();
   		});
+		  this.openSnackBar('eliminato');
   	} else {
-  		console.log('NO');
+		this.openSnackBar('nonEliminato');
   	}
   }
 
@@ -92,6 +95,7 @@ export class TableComponent implements OnInit {
   			this.http.put('/api/users/' + id, result).subscribe((res) => {
   				this.subTo();
   			});
+			this.openSnackBar('modificato');
   		}
   	});
   }
@@ -117,10 +121,49 @@ export class TableComponent implements OnInit {
   			this.loadTable();
   		},
   		(error) => {
-  			alert('Errore');
+  			this.openSnackBar('erroreTab');
   		}
   	);
   }
+
+  openSnackBar(check){
+	let config = new MatSnackBarConfig();
+	config.panelClass = 'simple-snack-bar';
+	if(check=='inserito'){
+		this.snackBar.open('Inserito Utente con successo', '', {
+			panelClass: 'success',
+			horizontalPosition: 'center',
+			duration:5000,
+		});
+	}else if(check=='erroreTab'){
+		this.snackBar.open('Errore caricamento tabella', '', {
+			panelClass: 'error',
+			horizontalPosition: 'center',
+			duration:5000,
+		});
+	}else if(check=='modificato'){
+		this.snackBar.open('Utente modificato', '', {
+			panelClass: 'info',
+			horizontalPosition: 'center',
+			duration:5000,
+		});
+	}else if(check=='eliminato'){
+		this.snackBar.open('Utente eliminato', '', {
+			panelClass: 'success',
+			horizontalPosition: 'center',
+			duration:5000,
+		});
+	}else if(check=='nonEliminato'){
+		this.snackBar.open('Nessun utente è stato eliminato', '', {
+			panelClass: 'info',
+			horizontalPosition: 'center',
+			duration:5000,
+		});
+	}else{
+		alert('Errore');
+	}
+  }
+
 }
 
 
