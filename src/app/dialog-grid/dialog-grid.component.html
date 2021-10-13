@@ -1,40 +1,30 @@
-<h1 mat-dialog-title style="text-align: center;">{{titolo}}</h1>
+<h1 mat-dialog-title style="text-align: center;">{{titolo | translate}}</h1> 
 <mat-dialog-content [formGroup]="form">
-  <!-- <mat-form-field >
-    <mat-label>Icona</mat-label>
-    <input matInput formControlName="icon" required >
-  </mat-form-field> -->
+  
   <mat-form-field >
-    <mat-label>Nome</mat-label>
+    <mat-label>{{'nome'| translate}}</mat-label>
     <input matInput formControlName="title" required >
   </mat-form-field>
   <mat-form-field >
-    <mat-label>Posizione/Luogo</mat-label>
-    <input matInput formControlName="position" required >
+    <mat-label>{{'posizione'| translate}}</mat-label>
+    <input matInput formControlName="position" required > 
   </mat-form-field>
   <mat-form-field>
-    <ngx-mat-file-input #upload formControlName="image" placeholder="Carica Immagine" (change)="onselectFile($event)"></ngx-mat-file-input>
+    <mat-label>{{'carica'| translate}}</mat-label>
+    <ngx-mat-file-input #upload formControlName="image" (change)="onselectFile($event)"></ngx-mat-file-input>
     <button mat-icon-button matSuffix *ngIf="!upload.empty" (click)="upload.clear($event)">{{this.let}}
       <mat-icon>clear</mat-icon>
     </button>
   </mat-form-field>
   <mat-form-field style="width: 500px; padding-left: 100px;">
-    <mat-label>Testo del Post</mat-label>
+    <mat-label>{{'textP'| translate}}</mat-label>
     <textarea rows="2" cols="25" matInput formControlName="post" style="height: 75px;" required></textarea>
   </mat-form-field>
   
   <br>
-  <div class="bott" style="padding-top: 25px;" >
+  <div class="bott" style="padding-top: 25px;" [style.visibility]="(url === undefined) ? 'hidden' : 'visible' ">
     <img [src]="url" height="150" width="300">
   </div>
-  <!-- <div class="bott" style="padding-top: 25px;" *ngIf="flag==true; else modifica">
-    <img [src]="url" height="150" width="300">
-  </div>
-  <ng-template #modifica>
-    <div class="bott" style="padding-top: 25px;" *ngIf="data==true">
-      <img [src]="data.image" height="150" width="300">
-    </div>
-  </ng-template> -->
     
 </mat-dialog-content>
 

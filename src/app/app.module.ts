@@ -40,6 +40,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { StaffPageComponent } from './staff-page/staff-page.component';
+import { StandardGuard } from './shared/standard.guard';
 
 
 
@@ -103,7 +104,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		MatButtonToggleModule,
 		MatSnackBarModule,
 	],
-	providers: [AuthGuard,HttpClient,
+	providers: [AuthGuard,StandardGuard,HttpClient,
 		{
 			provide: 'SocialAuthServiceConfig',
 			useValue: {

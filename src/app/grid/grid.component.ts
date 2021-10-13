@@ -17,9 +17,9 @@ export class GridComponent implements OnInit {
   showButton: boolean = false;
   loader= true;
   totalCount = 10;
+  color:any;
 
-  constructor(private myservice:MyService, private http: HttpClient, public dialog: MatDialog, private snackBar: MatSnackBar) {
-  }
+  constructor(private myservice:MyService, private http: HttpClient, public dialog: MatDialog, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
   	if (window.innerWidth <= 500) {

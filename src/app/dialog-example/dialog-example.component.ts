@@ -25,9 +25,9 @@ export class DialogExampleComponent implements OnInit {
 
   ngOnInit(): void {
   	if (this.data === true) {
-  		this.title = 'Aggiugi utente';
+  		this.title = 'aggU';
   	} else {
-  		this.title = 'Modifica Utente';
+  		this.title = 'modU';
   	}
   }
 

@@ -55,121 +55,16 @@ $app-light-theme: mat-light-theme($mat-primary-palette, $mat-accent-palette);
 @include angular-material-theme($app-light-theme);
 .lightMode-normal{
     @include angular-material-theme($app-light-theme);
+    .mat-card{
+      background-color:rgb(245, 219, 148);
+    }
 }
 
 //DARK THEME
 $app-dark-theme: mat-dark-theme($mat-primary-palette-dark, $mat-accent-palette-dark);
 .darkMode-normal{
   @include angular-material-theme($app-dark-theme);
+  .mat-card{
+    background-color:rgb(94, 94, 93);
+  }
 }
-
-
-//---------------  TEMI SPECIALI -----------------------
-
-/* #region BROWN THEME  */
-$mat-primary-scheme-brown: (
-  100: #8a5655,
-  500: var(--mat-primary-500, #5b2c2c),
-  700: #300400,
-  contrast: (
-    100: rgba(0,0,0,0.87),
-    500: #ffffff,
-    700: #ffffff,
-  )
-);
-$mat-accent-scheme-brown: (
-  100: #ffae49,
-  500: #e87e13,
-  700: #af5000,
-  contrast: (
-    100: rgba(0,0,0,0.87),
-    500: rgba(0,0,0,0.87),
-    700: #ffffff,
-  )
-);
-
-$mat-primary-palette-brown: mat-palette($mat-primary-scheme-brown);
-$mat-accent-palette-brown: mat-palette($mat-accent-scheme-brown);
-
-$app-light-theme-brown: mat-light-theme($mat-primary-palette-brown, $mat-accent-palette-brown);
-.lightMode-brown{
-  @include angular-material-theme($app-light-theme-brown);
-}
-
-$app-dark-theme-brown: mat-dark-theme($mat-primary-palette-brown, $mat-accent-palette-brown);
-.darkMode-brown {
-  @include angular-material-theme($app-dark-theme-brown);
-}
-/* #endregion */
-
-
-/* #region  PURPLE THEME */
-$mat-primary-scheme-purple: (
-  100: #cfc0ea,
-  500: var(--mat-primary-500, #673AB7),
-  700: #512da8,
-  contrast: (
-    100: rgba(0,0,0,0.87),
-    500: #ff0a0a,
-    700: #ffffff,
-  )
-);
-$mat-accent-scheme-purple: (
-  100: #6eff52,
-  500: #0eec01,
-  700: #00b800,
-  contrast: (
-    100: rgba(0,0,0,0.87),
-    500: rgba(31,28,255,0.87),
-    700: #ffffff,
-  )
-);
-$mat-primary-palette-purple: mat-palette($mat-primary-scheme-purple);
-$mat-accent-palette-purple: mat-palette($mat-accent-scheme-purple);
-
-$app-light-theme-purple: mat-light-theme($mat-primary-palette-purple, $mat-accent-palette-purple);
-.lightMode-purple{
-  @include angular-material-theme($app-light-theme-purple);
-}
-
-$app-dark-theme-purple: mat-dark-theme($mat-primary-palette-purple, $mat-accent-palette-purple);
-.darkMode-purple {
-  @include angular-material-theme($app-dark-theme-purple);
-}
-/* #endregion */
-
-
-/* #region  GREEN THEME */
-$mat-primary-scheme-green: (
-  100: #72ec76,
-  500: var(--mat-primary-500, #38b947),
-  700: #008816,
-  contrast: (
-    100: rgba(0,0,0,0.87),
-    500: #fff,
-    700: #ffffff,
-  )
-);
-$mat-accent-scheme-green: (
-  100: #ffe57f,
-  500: #ffd740,
-  700: #ffc400,
-  contrast: (
-    100: rgba(0,0,0,0.87),
-    500: rgba(0,0,0,0.87),
-    700: #ffffff,
-  )
-);
-$mat-primary-palette-green: mat-palette($mat-primary-scheme-green);
-$mat-accent-palette-green: mat-palette($mat-accent-scheme-green);
-
-$app-light-theme-green: mat-light-theme($mat-primary-palette-green, $mat-accent-palette-green);
-.lightMode-green{
-  @include angular-material-theme($app-light-theme-green);
-}
-
-$app-dark-theme-green: mat-dark-theme($mat-primary-palette-green, $mat-accent-palette-green);
-.darkMode-green{
-  @include angular-material-theme($app-dark-theme-green);
-}
-/* #endregion */

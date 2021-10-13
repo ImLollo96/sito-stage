@@ -14,7 +14,7 @@ export class DialogGridComponent implements OnInit {
   url:any='./assets/g-logo.png';
   image!:File;
   titolo:any;
-  let:any;
+  let:any; 
 
 
   constructor(public dialogRef: MatDialogRef<TableComponent>, @Inject(MAT_DIALOG_DATA) public data:any, public fb: FormBuilder, private http: HttpClient) {
@@ -30,9 +30,9 @@ export class DialogGridComponent implements OnInit {
 
   ngOnInit(): void {
   	if (this.data === true) {
-  		this.titolo = 'Aggiungi Post';
+  		this.titolo = 'aggP';
   	} else {
-  		this.titolo = 'Modifica Post';
+  		this.titolo = 'modP';
   	}
   }
 
@@ -67,19 +67,10 @@ export class DialogGridComponent implements OnInit {
   			const position = this.form.controls['position'].value;
   			const post = this.form.controls['post'].value;
   			const image = this.url;
-  			// const image = new FormData();
-  			// image.append('image', this.image, this.image.name);
   			this.dialogRef.close({ id, icon, title, position, post, image });
   		} else {
   			console.log('Attenzione', this.form.errors);
   		}
   	}
-  	// if(this.data===true){
-  	//   const fd = new FormData();
-  	//   fd.append('image', this.image, this.image.name);
-  	//   this.http.post('/api/image', fd).subscribe(res =>{
-  	//     console.log(res);
-  	//   });
-  	// }
   }
 }

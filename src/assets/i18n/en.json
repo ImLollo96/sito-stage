@@ -4,18 +4,28 @@
     "text3":"Gregorio Samsa, waking up one morning from troubled dreams, found himself transformed in his bed into a huge unclean insect. He rested on his back, hard as a cuirass, and lifting his head a little he could see his bowed belly, brown and divided into many curved segments, on top of which the bed blanket, close to sliding down all the way, was held up with difficulty. His legs, numerous and thin to pity, compared to his normal build, trembled relentlessly in a confused glint before his eyes. What happened to me? he thought. It wasn't a dream. His room, a small room of the right proportions, only a little small, sat quietly between the four well-known walls. On the table, an unmade sample of fabrics - Samsa was a traveling salesman and above, hanging on the wall, a portrait, cut by him - it was not much - from an illustrated magazine and placed inside a beautiful gilded frame: it depicted a seated woman, but well straight on the torso, with a cap and a fur boa; she raised a heavy muff to meet those who looked at it, in which all of her forearm disappeared. Gregory's gaze then turned towards the window, and the dark sky (they could hear)",
     "home":"Home Page",
     "tab":"Table",
+    "accedi":"Login",
+    "tema":"Theme",
+    "meteo":"The current Weather:",
+    "colore":"Choose the color",
+
+    "bl":"Blue Theme",
+    "ml":"Brown Theme",
+    "vl":"Violet Theme",
+    "gl":"Green Theme",
+
     "modifica":"Edit",
     "elimina":"Delete",
     "inserisci":"Add new User",
     "nome":"Name",
     "cognome":"Last Name",
     "ntel":"Telephone Num.",
-    "tema":"Theme",
-    "meteo":"The current Weather:",
-    "colore":"Choose the color",
-    "bl":"Blue Theme",
-    "ml":"Brown Theme",
-    "vl":"Violet Theme",
-    "gl":"Green Theme",
-    "accedi":"Login"
+    "aggU":"Add User",
+    "modU":"Edit User",
+    
+    "aggP":"Add new Post",
+    "modP":"Edit Post",
+    "posizione":"Place/Location",
+    "carica":"Upload Image",
+    "textP":"Text of the Post"
 }

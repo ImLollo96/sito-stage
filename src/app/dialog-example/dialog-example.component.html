@@ -1,16 +1,16 @@
-<h1 mat-dialog-title style="text-align: center;">{{title}}</h1>
+<h1 mat-dialog-title style="text-align: center;">{{title | translate}}</h1>
 <mat-dialog-content [formGroup]="form">
   <mat-form-field >
-    <mat-label>Nome</mat-label>
+    <mat-label>{{'nome' | translate}}</mat-label>
     <input matInput formControlName="nome" required >
   </mat-form-field>
   <mat-form-field >
-    <mat-label>Cognome</mat-label>
+    <mat-label>{{'cognome' | translate}}</mat-label>
     <input matInput formControlName="cognome" required >
   </mat-form-field>
   <br>
   <mat-form-field >
-    <mat-label>Telefono</mat-label>
+    <mat-label>{{'ntel' | translate}}</mat-label>
     <input matInput formControlName="telefono" required >
   </mat-form-field>
   <mat-form-field >

@@ -42,7 +42,7 @@ export class AppComponent{
   }
 
   setOn() {
-  	if (this.auth.controlLog !== false) {
+  	if (this.auth.controlLog !== 'false') {
   		this.isVisible = true;
   	}
   }
@@ -57,6 +57,8 @@ export class AppComponent{
       this.themeColor = localStorage.getItem('Type');
       const body = document.getElementsByTagName('body')[0];
       body.classList.add(this.themeColor);
+    }else{
+      localStorage.setItem('Type',this.themeColor);
     }
   }
 
@@ -146,6 +148,10 @@ export class AppComponent{
       localStorage.setItem('Theme',theme);
     }else if(theme=='picker'){
       this.colorSet=localStorage.getItem('holdC');
+      document.documentElement.style.setProperty('--mat-primary-500', this.colorSet);
+      localStorage.setItem('Theme',theme);
+    }else{
+      this.colorSet = '#ffffff';
       document.documentElement.style.setProperty('--mat-primary-500', this.colorSet);
       localStorage.setItem('Theme',theme);
     }

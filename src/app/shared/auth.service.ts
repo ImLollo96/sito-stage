@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable, ReplaySubject } from 'rxjs';
 import datiAutenticazione from './password.json';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-
+ 
 @Injectable({
 	providedIn: 'root'
 })
@@ -11,7 +11,8 @@ export class AuthService {
   private auth2!: gapi.auth2.GoogleAuth;
   private subject = new ReplaySubject<gapi.auth2.GoogleUser>(1);
   DATA_ELEMENT: Array<any> = datiAutenticazione;
-  isAuthenticated:boolean = JSON.parse(localStorage.getItem('loggedIn') || 'false');
+  //isAuthenticated:boolean = JSON.parse(localStorage.getItem('loggedIn') || 'false');
+  isAuthenticated:any = localStorage.getItem('loggedIn') || 'false';
 
 
   constructor(private router: Router, private snackBar: MatSnackBar) {
@@ -26,9 +27,9 @@ export class AuthService {
   public isLogged(u:string, p:string) {
   	if (this.DATA_ELEMENT.find((x) => x.user == u)) {
   		if (this.DATA_ELEMENT.find((x) => x.pass == p)) {
-  			this.isAuthenticated = true;
+  			this.isAuthenticated = 'false';
   			console.log(this.isAuthenticated);
-  			localStorage.setItem('loggedIn', 'true');
+  			localStorage.setItem('loggedIn', 'standard');
   			this.router.navigate(['']).then(() => {
   				window.location.reload();
 				this.openSnackBar('normal');
@@ -40,23 +41,23 @@ export class AuthService {
   }
 
   public setFalse() {
-  	this.isAuthenticated = false;
+  	this.isAuthenticated = 'false';
   	console.log(this.isAuthenticated);
   	localStorage.setItem('loggedIn', 'false');
   	return this.isAuthenticated;
   }
 
-  // GET PER "canActivate"
-  get controlLog() {
-  	return JSON.parse(localStorage.getItem('loggedIn') || this.isAuthenticated.toString());
-  }
+
+	get controlLog() {
+		return localStorage.getItem('loggedIn') || this.isAuthenticated;
+	}
 
   // LOGIN / LOGOUT GOOGLE
   public signIn() {
   	this.auth2.signIn().then((user) => {
   		this.subject.next(user);
   		this.isAuthenticated = true;
-  		localStorage.setItem('loggedIn', 'true');
+  		localStorage.setItem('loggedIn', 'google');
   		this.router.navigate(['']).then(() => {
   			window.location.reload();
 			this.openSnackBar('google');
