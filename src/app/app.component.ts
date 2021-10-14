@@ -133,18 +133,22 @@ export class AppComponent{
     if(theme=='blue'){
       this.colorSet='#1700e9'
       document.documentElement.style.setProperty('--mat-primary-500', this.colorSet);
+      localStorage.removeItem('holdC');
       localStorage.setItem('Theme',theme);
     }else if(theme=='brown'){
       this.colorSet='#5b2c2c'
       document.documentElement.style.setProperty('--mat-primary-500', this.colorSet);
+      localStorage.removeItem('holdC');
       localStorage.setItem('Theme',theme);
     }else if(theme=='purple'){
       this.colorSet='#673AB7'
       document.documentElement.style.setProperty('--mat-primary-500', this.colorSet);
+      localStorage.removeItem('holdC');
       localStorage.setItem('Theme',theme);
     }else if(theme=='green'){
       this.colorSet='#38b947'
       document.documentElement.style.setProperty('--mat-primary-500', this.colorSet);
+      localStorage.removeItem('holdC');
       localStorage.setItem('Theme',theme);
     }else if(theme=='picker'){
       this.colorSet=localStorage.getItem('holdC');

@@ -26,6 +26,10 @@ export class MyService {
 		throw new Error('Method not implemented.');
 	}
 
+	getPass(): Observable<any> {
+		return this.http.get('/api/password');
+	}
+
 	// METEO
 
   meteoData:any;

@@ -4,7 +4,7 @@ import { User } from '../user';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogExampleComponent } from '../dialog-example/dialog-example.component';
 import { v4 as uuidv4 } from 'uuid';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';

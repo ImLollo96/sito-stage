@@ -1,1 +1,69 @@
-<p>staff-page works!</p>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'nome'| translate}} </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'cognome'| translate}} </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="user">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'user'| translate}} </th>
+      <td mat-cell *matCellDef="let element"> {{element.user}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="password">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Password </th>
+        <td mat-cell *matCellDef="let element"> {{element.pass}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<div class="bott">
+    <button mat-raised-button color="primary" class="bottIn"  (click)="changeShow()">{{'inserisci'| translate}}</button>
+</div>
+
+
+<mat-card class="card" [style.visibility]="(show === false) ? 'hidden' : 'visible' ">
+    <mat-card-content>
+        <h1 style="margin-bottom: 20px;">{{'titleU' | translate}}</h1>
+        <form [formGroup]="form">
+            <mat-form-field style="margin-right: 50px;">
+                <mat-label>{{'nome' | translate}}</mat-label>
+                <input matInput formControlName="nome" required >
+            </mat-form-field>
+            <mat-form-field style="margin-left: 50px;">
+                <mat-label>{{'cognome' | translate}}</mat-label>
+                <input matInput formControlName="cognome" required >
+            </mat-form-field>
+            <br>
+            <mat-form-field style="margin-right: 50px;">
+                <mat-label>{{'user' | translate}}</mat-label>
+                <input matInput formControlName="user" required >
+            </mat-form-field>
+            <mat-form-field style="margin-left: 50px;">
+                <mat-label>Password</mat-label>
+                <input matInput  formControlName="password" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput  formControlName="mail" required>
+            </mat-form-field>
+
+            <div mat-form-field>
+                <button mat-button (click)="onNoClick()">Annulla Modifiche</button>
+                <button mat-button  (click)="save()" cdkFocusInitial>Salva Modifiche</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>    

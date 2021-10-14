@@ -22,7 +22,7 @@ export class DialogExampleComponent implements OnInit {
   	});
   	console.log(data);
   }
-
+ 
   ngOnInit(): void {
   	if (this.data === true) {
   		this.title = 'aggU';

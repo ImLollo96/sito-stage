@@ -27,5 +27,8 @@
     "modP":"Edit Post",
     "posizione":"Place/Location",
     "carica":"Upload Image",
-    "textP":"Text of the Post"
+    "textP":"Text of the Post",
+
+    "titleU":"User Data",
+    "user":"User"
 }

@@ -27,5 +27,8 @@
     "modP":"Modifica Post",
     "posizione":"Posizione/Luogo",
     "carica":"Carica Immagine",
-    "textP":"Testo Post"
+    "textP":"Testo Post",
+
+    "titleU":"Dati Utente",
+    "user":"Utente"
 }
