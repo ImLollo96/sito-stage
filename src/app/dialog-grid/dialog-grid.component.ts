@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TableComponent } from '../table/table.component';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+
 
 @Component({
 	selector: 'app-dialog-grid',
@@ -17,7 +17,7 @@ export class DialogGridComponent implements OnInit {
   let:any; 
 
 
-  constructor(public dialogRef: MatDialogRef<TableComponent>, @Inject(MAT_DIALOG_DATA) public data:any, public fb: FormBuilder, private http: HttpClient) {
+  constructor(public dialogRef: MatDialogRef<TableComponent>, @Inject(MAT_DIALOG_DATA) public data:any, public fb: FormBuilder) {
   	this.form = fb.group({
   		// 'icon': [data.icon, Validators.compose([Validators.required])],
   		title: [data.title, Validators.compose([Validators.required, Validators.minLength(2)])],

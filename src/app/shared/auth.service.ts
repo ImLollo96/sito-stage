@@ -26,7 +26,7 @@ export class AuthService {
 	this.subTo();
   }
   
-  //SUBTO PASSWORD
+  //SUB TO PASSWORD
   subTo() {
 	this.myservice.getPass().subscribe(
 		(response) => {

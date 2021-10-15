@@ -41,6 +41,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { StaffPageComponent } from './staff-page/staff-page.component';
 import { StandardGuard } from './shared/standard.guard';
+import { DialogStaffComponent } from './dialog-staff/dialog-staff.component';
 
 
 
@@ -60,6 +61,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		DialogGridComponent,
 		LogoutSnackBarComponent,
   		StaffPageComponent,
+    DialogStaffComponent,
 
 	],
 	entryComponents: [DialogExampleComponent, DialogGridComponent,LogoutSnackBarComponent],

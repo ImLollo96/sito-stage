@@ -30,5 +30,7 @@
     "textP":"Testo Post",
 
     "titleU":"Dati Utente",
-    "user":"Utente"
+    "user":"Utente",
+    "modS":"Modifica tuoi Dati",
+    "nope":"Indietro"
 }

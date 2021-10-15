@@ -1,0 +1,12 @@
+.bott{
+    display: flex;
+    justify-content: center;
+}
+.mat-form-field {
+    margin-right: 25px;
+}
+.mat-dialog-content{
+    max-width: 500px;
+    max-height: 600px;
+    text-align: center;
+}

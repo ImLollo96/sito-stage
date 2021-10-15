@@ -30,5 +30,7 @@
     "textP":"Text of the Post",
 
     "titleU":"User Data",
-    "user":"User"
+    "user":"User",
+    "modS":"Edit your Data",
+    "nope":"Back"
 }

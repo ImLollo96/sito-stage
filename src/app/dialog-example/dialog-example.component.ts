@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 export class DialogExampleComponent implements OnInit {
   form: FormGroup;
   title:any;
-
+ 
   constructor(public dialogRef: MatDialogRef<TableComponent>, @Inject(MAT_DIALOG_DATA) public data:any, public fb: FormBuilder) {
   	this.form = fb.group({
   		// 'id': [data.userId, Validators.compose([Validators.required,Validators.minLength(1)])],

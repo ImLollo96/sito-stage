@@ -34,6 +34,11 @@ export class AppComponent{
     this.translateS.use(localStorage.getItem('lang') || 'it');
   }
 
+  ngOnInit(): void {
+  	this.lang = localStorage.getItem('lang') || 'it';
+    this.theme = localStorage.getItem('Theme') || 'blue';
+  } 
+
   setOff() {
   	this.auth.setFalse();
   	this.auth.signOut();
@@ -162,7 +167,7 @@ export class AppComponent{
 
     let darker = this.shade(this.colorSet);
     let brighter = this.tint(this.colorSet);
-    console.log('darker: ',darker,'brighter: ',brighter);
+    //console.log('darker: ',darker,'brighter: ',brighter);
     document.documentElement.style.setProperty('--mat-primary-100', brighter);
     document.documentElement.style.setProperty('--mat-primary-700', darker);
 
@@ -173,12 +178,7 @@ export class AppComponent{
       document.documentElement.style.setProperty('--mat-contrast-500', '#ffffff');
     }
   }
-
-
-  ngOnInit(): void {
-  	this.lang = localStorage.getItem('lang') || 'it';
-    this.theme = localStorage.getItem('Theme') || 'blue';
-  } 
+ 
 
   //TRANSLATE
 

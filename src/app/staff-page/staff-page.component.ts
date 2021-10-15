@@ -4,6 +4,9 @@ import { MyService } from '../my.service';
 import { AuthService } from '../shared/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
+import { DialogStaffComponent } from '../dialog-staff/dialog-staff.component';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -12,82 +15,81 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./staff-page.component.css']
 })
 export class StaffPageComponent implements OnInit {
-
+  //form: FormGroup;
   displayedColumns: string[] = ['name', 'lastName', 'user', 'password', 'email'];
-  form!: FormGroup;
   DATA_ELEMENT: any;
   id = localStorage.getItem('userIn');
   dataSource: any;
-  show = false;
+  //array = this.DATA_ELEMENT.find((x) => x.id == this.id);
 
-  constructor(public fb: FormBuilder, private myservice: MyService, private auth: AuthService, private http: HttpClient) {
+  constructor(public fb: FormBuilder, private myservice: MyService, private http: HttpClient, public dialog: MatDialog, private snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource<any>(this.DATA_ELEMENT);
-    //this.auth.subTo();
-    this.subTo();
+        
     
   }
 
   ngOnInit(): void {
-    
-    this.fillUpData();
+    this.subTo();
   }
 
   loadTable() {
-  	console.log(this.DATA_ELEMENT);
+  	//console.log(this.DATA_ELEMENT);
     this.dataSource = new MatTableDataSource<any>(this.DATA_ELEMENT);
   }
 
   changeShow(){
-    if(this.show==false){
-      this.show= true;
-    }else{
-      this.show = false;
-    }
+    
   }
 
   subTo() {
   	this.myservice.getPass().subscribe(
   		(response) => {
-  			this.DATA_ELEMENT = response;
+  			this.DATA_ELEMENT = response.filter((x) => x.id == this.id);
   			this.loadTable();
   		},
   		(error) => {
-  			alert('Error');
+  			this.openSnackBar('error');
   		}
   	);
   }
 
-  fillUpData() {
-    const array = this.auth.DATA_ELEMENT.find((x) => x.id == this.id);
-    this.form = this.fb.group({
-      user: [array.user, Validators.compose([Validators.required, Validators.minLength(2)])],
-      password: [array.pass, Validators.compose([Validators.required, Validators.minLength(5)])],
-      nome: [array.name, Validators.compose([Validators.required, Validators.minLength(2)])],
-      cognome: [array.lastName, Validators.compose([Validators.required, Validators.minLength(2)])],
-      mail: [array.email, Validators.compose([Validators.required, Validators.minLength(5)])]
-    });
-  }
 
-  onNoClick(){
-    this.fillUpData();
-  }
+  openDialogPut() {
+  	const id = localStorage.getItem('userIn');
+  	const index = this.DATA_ELEMENT.find((res) => res.id === id);
+  	const dialogRef = this.dialog.open(DialogStaffComponent, {
+  		data: index
+  	});
 
-  save() {
-    if (this.form.valid) {
-      const id = this.id;
-      const name = this.form.controls['nome'].value;
-      const lastName = this.form.controls['cognome'].value;
-      const user = this.form.controls['user'].value;
-      const pass = this.form.controls['password'].value;
-      const emailAddress = this.form.controls['mail'].value;
-      const arr = ({ id, name, lastName, user, pass, emailAddress });
-      console.log('ARR: ', arr);
-      this.http.put('/api/password/' + id, arr).subscribe((res) => {
-        this.auth.subTo();
-        this.loadTable();
+  	dialogRef.afterClosed().subscribe((result) => {
+  		//console.log('Result: ', result);
+  		if (result.id != undefined) {
+  			this.http.put('/api/password/' + id, result).subscribe((res) => {
+  				this.subTo();
+  			});
+			this.openSnackBar('modificato');
+  		}
+  	});
+  }
+  
+  openSnackBar(check){
+    let config = new MatSnackBarConfig();
+    config.panelClass = 'simple-snack-bar';
+     if(check=='modificato'){
+      this.snackBar.open('Dati modificati', '', {
+        panelClass: 'info',
+        horizontalPosition: 'center',
+        duration:5000,
       });
-    } else {
-      console.log('Attenzione', this.form.errors);
+    }else if(check=='error'){
+      this.snackBar.open('Errore', '', {
+        panelClass: 'error',
+        horizontalPosition: 'center',
+        duration:5000,
+      });
+    }else{
+      alert('Errore');
     }
   }
+  
 }

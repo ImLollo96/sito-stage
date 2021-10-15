@@ -1,0 +1,31 @@
+<h1 mat-dialog-title style="text-align: center;">{{'titleU' | translate}}</h1>
+<mat-dialog-content [formGroup]="form">
+  
+    <mat-form-field >
+        <mat-label>{{'nome' | translate}}</mat-label>
+        <input matInput formControlName="nome" required >
+    </mat-form-field>
+    <mat-form-field >
+        <mat-label>{{'cognome' | translate}}</mat-label>
+        <input matInput formControlName="cognome" required >
+    </mat-form-field>
+    <br>
+    <mat-form-field >
+        <mat-label>{{'user' | translate}}</mat-label>
+        <input matInput formControlName="user" required >
+    </mat-form-field>
+    <mat-form-field >
+        <mat-label>Password</mat-label>
+        <input matInput  formControlName="password" required>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput  formControlName="mail" required>
+    </mat-form-field>
+    
+</mat-dialog-content>
+
+<div mat-dialog-actions class="bott">
+    <button mat-button (click)="onNoClick()">{{'nope' | translate}}</button>
+    <button mat-button  (click)="save()" cdkFocusInitial>Ok</button>
+</div>
