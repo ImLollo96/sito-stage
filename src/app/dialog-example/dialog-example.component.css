@@ -1,3 +1,7 @@
 .mat-form-field {
     margin-right: 8px;
 }
+.bott{
+    display: flex;
+    justify-content: center;
+}

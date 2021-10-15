@@ -11,7 +11,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class HomeComponent implements OnInit {
   meteoData:any;
   ELEMENT_DATA!: Array<any>;
-
   theme:any;
 
   constructor(private myservice:MyService, private aComp: AppComponent,private translateS: TranslateService) {
@@ -21,13 +20,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   	this.returnMeteo();
-    this.theme = localStorage.getItem('Theme');
-    console.log(this.theme);
   } 
 
+/** Chiamata a servizio per widget Meteo */
   async returnMeteo(): Promise<void> {
   	this.ELEMENT_DATA = await this.myservice.returnMeteo();
-  	console.log(this.ELEMENT_DATA);
   	this.meteoData = this.ELEMENT_DATA;
   }
 

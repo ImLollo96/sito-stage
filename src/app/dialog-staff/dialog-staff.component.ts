@@ -25,11 +25,12 @@ export class DialogStaffComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+/** Chiusura Dialog senza passaggio dati */
   onNoClick(){
     this.dialogRef.close();
   }
 
+/** Salvataggio dati inseriti da utente e passaggio a Staff */
   save() {
     if (this.form.valid) {
       const id = this.data.id;

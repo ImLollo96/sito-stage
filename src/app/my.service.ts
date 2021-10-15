@@ -7,37 +7,31 @@ import { Observable } from 'rxjs';
 	providedIn: 'root'
 })
 export class MyService {
-	constructor(private http: HttpClient) {
-		
-	}
 
-	// ritorna le info per la tabella
+	meteoData:any;
+
+	constructor(private http: HttpClient) {	}
+
+/** API per Table */
 	getInformation(): Observable<any> {
 		return this.http.get('/api/users');
 	}
 
-	// ritorna le info per grid
+/** API per Grid */
 	getDati(): Observable<any> {
 		return this.http.get('/api/grid');
 	}
 
-
-	log(arg0: string): void {
-		throw new Error('Method not implemented.');
-	}
-
+/** API per Login */
 	getPass(): Observable<any> {
 		return this.http.get('/api/password');
 	}
 
-	// METEO
-
-  meteoData:any;
-
-  returnMeteo(): Promise<any> {
-  	this.meteoData = fetch('https://api.openweathermap.org/data/2.5/weather?q=genoa&appid=e59773b90111c69daaa8f3243237690c').then((response) => response.json());
-  	return new Promise((resolve) => setTimeout(resolve, 500, this.meteoData));
-  }
+/** API per Widget Meteo */
+	returnMeteo(): Promise<any> {
+		this.meteoData = fetch('https://api.openweathermap.org/data/2.5/weather?q=genoa&appid=e59773b90111c69daaa8f3243237690c').then((response) => response.json());
+		return new Promise((resolve) => setTimeout(resolve, 500, this.meteoData));
+	}
 
   
 

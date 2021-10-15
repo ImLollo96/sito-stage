@@ -7,8 +7,9 @@ import { AuthService } from './auth.service';
 })
 export class StandardGuard implements CanActivate {
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor( private router: Router) {}
 
+/** Controllo autorizzazione ad accesso pagine */
   canActivate(){
     let role = localStorage.getItem('loggedIn')
 

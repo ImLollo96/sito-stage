@@ -10,46 +10,51 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 	styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
-  user!: gapi.auth2.GoogleUser
 
-  constructor(public fb: FormBuilder, private authService: AuthService, private ref: ChangeDetectorRef, private snackBar: MatSnackBar) {
-  	this.form = fb.group({
-  		username: ['', Validators.required],
-  		password: ['', Validators.required]
-  	});
-  }
+	form: FormGroup;
+	user!: gapi.auth2.GoogleUser;
 
-  ngOnInit(): void {
-  	this.authService.observable().subscribe((user) => {
-  		this.user = user;
-  		this.ref.detectChanges();
-  	});
-  }
+	constructor(public fb: FormBuilder, private authService: AuthService, private ref: ChangeDetectorRef, private snackBar: MatSnackBar) {
+		this.form = fb.group({
+			username: ['', Validators.required],
+			password: ['', Validators.required]
+		});
+	}
 
-  checkLogin() {
-  	const username = this.form.controls['username'].value;
-  	const password = this.form.controls['password'].value;
-  	const app = this.authService.isLogged(username, password);
-  	if (app == false) {
-  		this.openSnackBar();
-  	}
-  }
+	ngOnInit(): void {
+		this.authService.observable().subscribe((user) => {
+			this.user = user;
+			this.ref.detectChanges();
+		});
+	}
 
-  signIn() {
-  	this.authService.signIn();
-  }
+/** Log In con account Standard */
+	checkLogin() {
+		const username = this.form.controls['username'].value;
+		const password = this.form.controls['password'].value;
+		const app = this.authService.isLogged(username, password);
 
+		if (app == false) {
+			this.openSnackBar();
+		}
+	}
 
-  openSnackBar(){
-	let config = new MatSnackBarConfig();
-	config.panelClass = 'simple-snack-bar';
-	this.snackBar.open('Errore, username o password sbagliati', '', {
-		panelClass: 'error',
-		horizontalPosition: 'center',
-		duration:5000,
-	});
-  }
+/** Log In con Google */
+	signIn() {
+		this.authService.signIn();
+	}
+
+/** Snackbar */
+	openSnackBar(){
+		let config = new MatSnackBarConfig();
+		config.panelClass = 'simple-snack-bar';
+		this.snackBar.open('Errore, username o password sbagliati', '', {
+			panelClass: 'error',
+			horizontalPosition: 'center',
+			duration:5000,
+		});
+	}
+
 }
 
 
