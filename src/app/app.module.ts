@@ -34,11 +34,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatSelectModule} from '@angular/material/select';
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { StaffPageComponent } from './staff-page/staff-page.component';
 import { StandardGuard } from './shared/standard.guard';
 import { DialogStaffComponent } from './dialog-staff/dialog-staff.component';
@@ -61,7 +61,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		DialogGridComponent,
 		LogoutSnackBarComponent,
   		StaffPageComponent,
-    DialogStaffComponent,
+    	DialogStaffComponent,
 
 	],
 	entryComponents: [DialogExampleComponent, DialogGridComponent,LogoutSnackBarComponent],

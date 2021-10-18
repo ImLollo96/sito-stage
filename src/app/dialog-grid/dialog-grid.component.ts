@@ -18,6 +18,7 @@ export class DialogGridComponent implements OnInit {
   let:any; 
 
 	constructor(public dialogRef: MatDialogRef<TableComponent>, @Inject(MAT_DIALOG_DATA) public data:any, public fb: FormBuilder) {
+		/** Mostra nella form i valori e controllo rispetto parametri */
 		this.form = fb.group({
 			title: [data.title, Validators.compose([Validators.required, Validators.minLength(2)])],
 			position: [data.position, Validators.compose([Validators.required, Validators.minLength(2)])],

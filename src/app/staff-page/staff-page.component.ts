@@ -16,7 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class StaffPageComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'lastName', 'user', 'password', 'email'];
+  displayedColumns: string[] = ['name', 'lastName', 'user', 'password', 'email']; /** header tabella */
   DATA_ELEMENT: any;
   id = localStorage.getItem('userIn');
   dataSource: any;
@@ -52,11 +52,11 @@ export class StaffPageComponent implements OnInit {
   openDialogPut() {
   	const id = localStorage.getItem('userIn');
   	const index = this.DATA_ELEMENT.find((res) => res.id === id);
-  	const dialogRef = this.dialog.open(DialogStaffComponent, {
+  	const dialogRef = this.dialog.open(DialogStaffComponent, {  /** Apertura Dialog con passaggio dati selezionati */
   		data: index
   	});
 
-  	dialogRef.afterClosed().subscribe((result) => {
+  	dialogRef.afterClosed().subscribe((result) => {   /** Chiusura Dialog, put risultato su server */
   		if (result.id != undefined) {
   			this.http.put('/api/password/' + id, result).subscribe((res) => {
   				this.subTo();
@@ -67,7 +67,7 @@ export class StaffPageComponent implements OnInit {
   }
 
 /** Snackbar */
-  openSnackBar(check){
+  openSnackBar(/** string passata da funzioni per selezionare evento */check:string){
     let config = new MatSnackBarConfig();
     config.panelClass = 'simple-snack-bar';
      if(check=='modificato'){

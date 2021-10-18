@@ -18,6 +18,7 @@ export class AuthService {
 
 
 	constructor(private router: Router, private snackBar: MatSnackBar, private http: HttpClient, private myservice:MyService) {
+		/** Load API GOOGLE */
 		gapi.load('auth2', () => {
 			this.auth2 = gapi.auth2.init({
 				client_id: '111898526119-bip3c2ncalj0hfe5s3k4cop1dde36tok.apps.googleusercontent.com'
@@ -39,19 +40,18 @@ export class AuthService {
 	}
 
 /** Servizio controllo credenziali Login */
-	public isLogged(u:string, p:string) {
-		if (this.DATA_ELEMENT.find((x) => x.user == u)) {
+	public isLogged(/** username inserito da utente */u:string, /** password inserita da utente */ p:string) {
+		if (this.DATA_ELEMENT.find((x) => x.user == u)) {	/** cerca corrispondenze */
 			if (this.DATA_ELEMENT.find((x) => x.pass == p)) {
-				this.isAuthenticated = 'standard';
+				this.isAuthenticated = 'standard';	
 				let index = this.DATA_ELEMENT.find((x) => x.user == u);
-				localStorage.setItem('userInfo', index);
-				let id = index.id;
+				let id = index.id; /** prende l'id di chi ha fatto l'accesso */
 				console.log('Il mio id',id);
-				localStorage.setItem('loggedIn', 'standard');
+				localStorage.setItem('loggedIn', 'standard');	/** imposta il tipo di account nello storage */
 				localStorage.setItem('userIn', id);
-				this.router.navigate(['']).then(() => {
+				this.router.navigate(['']).then(() => {		/** naviga alla home */
 					window.location.reload();
-					this.openSnackBar('standard');
+					this.openSnackBar('standard');	/** chiamata a snackbar */
 				});
 				return true;
 			}
@@ -65,7 +65,6 @@ export class AuthService {
 		console.log(this.isAuthenticated);
 		localStorage.setItem('loggedIn', 'false');
 		localStorage.removeItem('userIn');
-		localStorage.removeItem('userInfo');
 		return this.isAuthenticated;
 	}
 
@@ -79,10 +78,10 @@ export class AuthService {
 		this.auth2.signIn().then((user) => {
 			this.subject.next(user);
 			this.isAuthenticated = 'google';
-			localStorage.setItem('loggedIn', 'google');
-			this.router.navigate(['']).then(() => {
+			localStorage.setItem('loggedIn', 'google');	/** imposta il tipo di account nello storage */
+			this.router.navigate(['']).then(() => {		/** naviga alla home */
 				window.location.reload();
-				this.openSnackBar('google');
+				this.openSnackBar('google');	/** chiamata a snackbar */
 			});
 		}).catch(() => {
 			this.subject.next();
@@ -108,7 +107,7 @@ export class AuthService {
   
 
 /** Snackbar */
-	openSnackBar(check){
+	openSnackBar(/** string passata da funzioni per selezionare evento */check:string){
 		let config = new MatSnackBarConfig();
 		config.panelClass = 'simple-snack-bar';
 		if(check=='google'){

@@ -23,6 +23,7 @@ export class GridComponent implements OnInit {
   	constructor(private myservice:MyService, private http: HttpClient, public dialog: MatDialog, private snackBar: MatSnackBar) {}
 
 	ngOnInit(): void {
+		/** Gestione visualizzazione Grid ad apertura pagina */
 		if (window.innerWidth <= 500) {
 			this.breakpoint = 1;
 		} else if (window.innerWidth <= 1025) {
@@ -30,6 +31,7 @@ export class GridComponent implements OnInit {
 		} else {
 			this.breakpoint = 3;
 		}
+
 		this.loadGrid();
 		this.loader = false;
 	}
@@ -70,8 +72,8 @@ export class GridComponent implements OnInit {
 	}
 
 /** POST */
-	onSubmit(array:any) {
-		const id = uuidv4();
+	onSubmit(/** Risultato da Dialog*/array:any) {
+		const id = uuidv4();	/** Creazione id univoco*/
 		const icon = array.icon;
 		const title = array.title;
 		const position = array.position;
@@ -81,7 +83,6 @@ export class GridComponent implements OnInit {
 		this.DATA_ELEMENT.push(newGrid);
 		this.http.post('/api/grid/v2', newGrid).subscribe((result) => {
 			this.loadGrid();
-			console.log(this.DATA_ELEMENT);
 			this.openSnackBar('inserito');
 		},
 		(error) => {
@@ -91,14 +92,14 @@ export class GridComponent implements OnInit {
 	}	
 
 /** Dialog per PUT e aggiornamento del grid */
-	openDialogPut(id:string) {
+	openDialogPut(/** id del post selezionato da modificare */id:string) {
 		console.log(id);
 		const arr = this.DATA_ELEMENT.find((res) => res.id === id);
-		const dialogRef = this.dialog.open(DialogGridComponent, {
+		const dialogRef = this.dialog.open(DialogGridComponent, {	/** Open del Dialog con passaggio parametri */
 			data: arr
 		});
 
-		dialogRef.afterClosed().subscribe((result) => {
+		dialogRef.afterClosed().subscribe((result) => {		/** Chiusura Dialog, put del risultato sul server */
 			console.log('Result: ', result);
 			if (result.id != null) {
 				this.http.put('/api/grid/' + id, result).subscribe((res) => {
@@ -111,7 +112,7 @@ export class GridComponent implements OnInit {
 	}
 
 /** Snackbar */
-	openSnackBar(check:string){
+	openSnackBar(/** string passata da funzioni per selezionare evento */check:string){
 		let config = new MatSnackBarConfig();
 		config.panelClass = 'simple-snack-bar';
 		if(check=='inserito'){

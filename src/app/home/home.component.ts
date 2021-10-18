@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private myservice:MyService, private aComp: AppComponent,private translateS: TranslateService) {
   	this.meteoData = this.ELEMENT_DATA;
-    
   }
 
   ngOnInit(): void {

@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 	checkLogin() {
 		const username = this.form.controls['username'].value;
 		const password = this.form.controls['password'].value;
-		const app = this.authService.isLogged(username, password);
+		const app = this.authService.isLogged(username, password); /** passa al servizio i dati inseriti dall'utente e ritorna boolean */
 
 		if (app == false) {
 			this.openSnackBar();

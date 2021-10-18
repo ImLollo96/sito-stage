@@ -15,13 +15,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AppComponent {
   title = 'My Site';
   user!: gapi.auth2.GoogleUser;
-  isVisible: boolean = false;
-  isVisibleStaff: boolean = false;
-  color!: string;
+  isVisible: boolean = false; /** UI on/off */
+  isVisibleStaff: boolean = false;   /** bottone "staff" on/off */
+  color!: string; /** gestisce il colore da mostare nel picker come selezionato */
   colorSet: any;
-  theme!: string;
-  themeColor: any = 'lightMode-normal';
-  lang!: string;
+  theme!: string; /** gestisce che tema mostare come selezionato */
+  themeColor: any = 'lightMode-normal'; 
+  lang!: string; /** gestisce che lingua mostrare come selezionata */
 
   /** Gestione apertura Menu sidenav */
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -49,17 +49,17 @@ export class AppComponent {
    *  e richiama metodi per eseguire il Log Out
   */
   setOff() {
-    this.auth.setFalse();
-    this.auth.signOut();
-    this.isVisible = false;
-    this.isVisibleStaff = false;
+    this.auth.setFalse(); /** lougout account "standard" */
+    this.auth.signOut();  /** lougout account Google */
+    this.isVisible = false; /** disabilita/rende invisibile gli elementi dell'interfiaccia */
+    this.isVisibleStaff = false;  /** disabilita/rende invisibile il bottone "staff" */
   }
 
   /** Rende visibili parti dell'interfaccia al Log In */
   setOn() {
-    if (this.auth.controlLog !== 'false') {
+    if (this.auth.controlLog !== 'false') {   /** controlla se effettivamente si è fatto il login */
       this.isVisible = true;
-      if (this.auth.controlLog !== 'google') {
+      if (this.auth.controlLog !== 'google') {  /** se non si è fatto l'accesso con Google abilita anche bottone "staff" */
         this.isVisibleStaff = true;
       }
     }
@@ -74,7 +74,7 @@ export class AppComponent {
     if (localStorage.getItem('Type')) {
       this.themeColor = localStorage.getItem('Type');
       const body = document.getElementsByTagName('body')[0];
-      body.classList.add(this.themeColor);
+      body.classList.add(this.themeColor);  /** imposta tema body */
     } else {
       localStorage.setItem('Type', this.themeColor);
     }
@@ -84,13 +84,13 @@ export class AppComponent {
   themeSwitcher() {
     const body = document.getElementsByTagName('body')[0];
     body.classList.remove(this.themeColor);
-    (this.themeColor == 'lightMode-normal') ? this.themeColor = 'darkMode-normal' : this.themeColor = 'lightMode-normal';
-    body.classList.add(this.themeColor);
-    localStorage.setItem('Type', this.themeColor);
+    (this.themeColor == 'lightMode-normal') ? this.themeColor = 'darkMode-normal' : this.themeColor = 'lightMode-normal'; /** se il meta è chiaro lo mette scuro o viceversa */
+    body.classList.add(this.themeColor);  /** imposta tema body */
+    localStorage.setItem('Type', this.themeColor);  /** setta nello storage il tema in uso */
   }
 
-  /** Set dello primary color da "Color Picker" */
-  setColor(color: string) {
+  /** Set del primary color da "Color Picker" */
+  setColor(/** hex del colore scelto da utente */color: string) {
     localStorage.setItem('holdC', color);
     document.documentElement.style.setProperty('--mat-primary-500', color);
     this.setTheme('picker');
@@ -100,7 +100,7 @@ export class AppComponent {
   /** Converte da HEX a RGB il colore scelto dal "Color Picker"
    *  e dei colori dei temi preimpostati
   */
-  parseColor(hex: string) {
+  parseColor(/** hex passato dalla funzione */hex: string) {
     let r = 0, g = 0, b = 0;
     const match = hex.match(/^#([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])$/);
     if (match) {
@@ -150,24 +150,24 @@ export class AppComponent {
   /** Set del color primary 500 con temi preimpostati
    * Scelti dall'utente da menu
   */
-  setTheme(theme: string) {
+  setTheme(/** valore scelto nel mat-select */theme: string) {
     if (theme == 'blue') {
-      this.colorSet = '#1700e9'
-      document.documentElement.style.setProperty('--mat-primary-500', this.colorSet);
-      localStorage.removeItem('holdC');
-      localStorage.setItem('Theme', theme);
+      this.colorSet = '#1700e9';
+      document.documentElement.style.setProperty('--mat-primary-500', this.colorSet);   /** setta il tema */
+      localStorage.removeItem('holdC'); /** rimuove eventuale colore scelto da "Color Picker" nello storage */
+      localStorage.setItem('Theme', theme);/** setta nello storage il tema attuale */
     } else if (theme == 'brown') {
-      this.colorSet = '#5b2c2c'
+      this.colorSet = '#5b2c2c';
       document.documentElement.style.setProperty('--mat-primary-500', this.colorSet);
       localStorage.removeItem('holdC');
       localStorage.setItem('Theme', theme);
     } else if (theme == 'purple') {
-      this.colorSet = '#673AB7'
+      this.colorSet = '#673AB7';
       document.documentElement.style.setProperty('--mat-primary-500', this.colorSet);
       localStorage.removeItem('holdC');
       localStorage.setItem('Theme', theme);
     } else if (theme == 'green') {
-      this.colorSet = '#38b947'
+      this.colorSet = '#38b947';
       document.documentElement.style.setProperty('--mat-primary-500', this.colorSet);
       localStorage.removeItem('holdC');
       localStorage.setItem('Theme', theme);
@@ -184,11 +184,11 @@ export class AppComponent {
     let darker = this.shade(this.colorSet);
     let brighter = this.tint(this.colorSet);
     //console.log('darker: ',darker,'brighter: ',brighter);
-    document.documentElement.style.setProperty('--mat-primary-100', brighter);
-    document.documentElement.style.setProperty('--mat-primary-700', darker);
+    document.documentElement.style.setProperty('--mat-primary-100', brighter);  /** setta la variante più chiara del tema */
+    document.documentElement.style.setProperty('--mat-primary-700', darker);  /** setta la variante più scura del tema */
 
-    let check = this.isBright(this.colorSet);
-    if (check === true) {
+    let check = this.isBright(this.colorSet);   /** risultato controllo livello di luminosità */
+    if (check === true) {   /** in base al risultato decide se presentare testo (ecc...) di colore nero e o bianco */
       document.documentElement.style.setProperty('--mat-contrast-500', '#000000');
     } else {
       document.documentElement.style.setProperty('--mat-contrast-500', '#ffffff');
@@ -199,7 +199,7 @@ export class AppComponent {
 
   /** Set della lingua */
   selectLanguage(lang:string) {
-    localStorage.setItem('lang', lang);
+    localStorage.setItem('lang', lang); /** setta nello storage la lingua attualmente usata */
     window.location.reload();
   }
 

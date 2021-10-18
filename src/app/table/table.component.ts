@@ -17,7 +17,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 })
 export class TableComponent implements OnInit {
 	form: FormGroup;
-	displayedColumns: string[] = ['firstName', 'lastName', 'phoneNumber', 'emailAddress', 'action', 'action2'];
+	displayedColumns: string[] = ['firstName', 'lastName', 'phoneNumber', 'emailAddress', 'action', 'action2'];	/** header tabella */
 	dataSource: any;
 	ELEMENT_DATA!: any;
 
@@ -42,9 +42,9 @@ export class TableComponent implements OnInit {
 	}
 
 /** Delete */
-	deleteUser(id:string) {
+	deleteUser(/** id elemento */id:string) {
 		if (confirm('Sei sicuro di volerlo eliminare?')) {
-			this.http.delete('/api/users/' + id).subscribe((result) => {
+			this.http.delete('/api/users/' + id).subscribe((result) => {	/** passaggio dell'id dell'elemento da eliminare sul server */
 				this.subTo();
 			});
 				this.openSnackBar('eliminato');
@@ -55,15 +55,15 @@ export class TableComponent implements OnInit {
 
 
 /** Dialog per PUT */
-	openDialogPut(id:any) {
+	openDialogPut(/** id elemento selezionato */id:any) {
 		const index = this.ELEMENT_DATA.find((res) => res.userId === id);
-		const dialogRef = this.dialog.open(DialogExampleComponent, {
+		const dialogRef = this.dialog.open(DialogExampleComponent, {	/** apertura Dialog */
 			data: index
 		});
 
 		dialogRef.afterClosed().subscribe((result) => {
 			if (result.userId != undefined) {
-				this.http.put('/api/users/' + id, result).subscribe((res) => {
+				this.http.put('/api/users/' + id, result).subscribe((res) => {	/** chiusura Dialog */
 					this.subTo();
 				});
 				this.openSnackBar('modificato');
@@ -123,7 +123,7 @@ export class TableComponent implements OnInit {
 	}
 
 /** Snackbar */
-	openSnackBar(check:string){
+	openSnackBar(/** string passata da funzioni per selezionare evento */check:string){
 		let config = new MatSnackBarConfig();
 		config.panelClass = 'simple-snack-bar';
 		if(check=='inserito'){

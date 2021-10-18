@@ -14,6 +14,7 @@ export class DialogExampleComponent implements OnInit {
 	title!:string;
  
 	constructor(public dialogRef: MatDialogRef<TableComponent>, @Inject(MAT_DIALOG_DATA) public data:any, public fb: FormBuilder) {
+		/** Mostra nella form i valori e controllo rispetto parametri */
 		this.form = fb.group({
 			nome: [data.firstName, Validators.compose([Validators.required, Validators.minLength(2)])],
 			cognome: [data.lastName, Validators.compose([Validators.required, Validators.minLength(2)])],

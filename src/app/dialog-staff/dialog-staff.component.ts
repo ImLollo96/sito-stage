@@ -13,6 +13,7 @@ export class DialogStaffComponent implements OnInit {
   form: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<StaffPageComponent>, @Inject(MAT_DIALOG_DATA) public data:any, public fb: FormBuilder) { 
+    /** Mostra nella form i valori e controllo rispetto parametri */
     this.form = fb.group({
       user: [data.user, Validators.compose([Validators.required, Validators.minLength(2)])],
       password: [data.pass, Validators.compose([Validators.required, Validators.minLength(5)])],
