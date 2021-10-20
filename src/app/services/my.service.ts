@@ -32,9 +32,6 @@ export class MyService {
 		this.meteoData = fetch('https://api.openweathermap.org/data/2.5/weather?q=genoa&appid=e59773b90111c69daaa8f3243237690c').then((response) => response.json());
 		return new Promise((resolve) => setTimeout(resolve, 500, this.meteoData));
 	}
-
-  
-
 }
 
 

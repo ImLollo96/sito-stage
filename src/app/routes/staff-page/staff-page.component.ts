@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MyService } from '../my.service';
-import { AuthService } from '../shared/auth.service';
+import { MyService } from '../../services/my.service';
+import { AuthService } from '../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
-import { DialogStaffComponent } from '../dialog-staff/dialog-staff.component';
+import { DialogStaffComponent } from '../../components/dialog/dialog-staff/dialog-staff.component';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 

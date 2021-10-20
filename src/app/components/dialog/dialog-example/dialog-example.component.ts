@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { TableComponent } from '../table/table.component';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TableComponent } from '../../../routes/table/table.component';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+
 
 @Component({
 	selector: 'app-dialog-example',
@@ -13,7 +15,7 @@ export class DialogExampleComponent implements OnInit {
 	form: FormGroup;
 	title!:string;
  
-	constructor(public dialogRef: MatDialogRef<TableComponent>, @Inject(MAT_DIALOG_DATA) public data:any, public fb: FormBuilder) {
+	constructor(public dialogRef: MatDialogRef<TableComponent>, @Inject(MAT_DIALOG_DATA) public data:any, public fb: FormBuilder, private snackBar: MatSnackBar) {
 		/** Mostra nella form i valori e controllo rispetto parametri */
 		this.form = fb.group({
 			nome: [data.firstName, Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -39,11 +41,19 @@ export class DialogExampleComponent implements OnInit {
 /** Salvataggio dei dati inseriti da utente e invio a Table */
 	save() {
 		if (this.data === true) {
-			const firstName = this.form.controls['nome'].value;
-			const lastName = this.form.controls['cognome'].value;
-			const phoneNumber = this.form.controls['telefono'].value;
-			const emailAddress = this.form.controls['mail'].value;
-			this.dialogRef.close({ firstName, lastName, phoneNumber, emailAddress });
+			if (this.form.valid) {
+				const firstName = this.form.controls['nome'].value;
+				const lastName = this.form.controls['cognome'].value;
+				const phoneNumber = this.form.controls['telefono'].value;
+				const emailAddress = this.form.controls['mail'].value;
+				this.dialogRef.close({ firstName, lastName, phoneNumber, emailAddress });
+			} else {
+				this.form.controls['nome'].markAsTouched();
+				this.form.controls['cognome'].markAsTouched();
+				this.form.controls['telefono'].markAsTouched();
+				this.form.controls['mail'].markAsTouched();
+				this.openSnackBar('error');
+			}
 		} else {
 			if (this.form.valid) {
 				const userId = this.data.userId;
@@ -53,9 +63,24 @@ export class DialogExampleComponent implements OnInit {
 				const emailAddress = this.form.controls['mail'].value;
 				this.dialogRef.close({ userId, firstName, lastName, phoneNumber, emailAddress });
 			} else {
-				console.log('Attenzione', this.form.errors);
+				this.openSnackBar('error');
 			}
 		}
 	}
 
+
+/** Snackbar */
+	openSnackBar(/** string passata da funzioni per selezionare evento */check:string){
+		let config = new MatSnackBarConfig();
+		config.panelClass = 'simple-snack-bar';
+		if(check=='error'){
+			this.snackBar.open('Compilare tutti i campi', '', {
+				panelClass: 'error',
+				horizontalPosition: 'center',
+				duration:5000,
+			});
+		}else{
+			alert('Errore');
+		}
+	}
 }

@@ -2,14 +2,15 @@
     <img src="https://i.imgur.com/NrlqZnc.png" class="img">
 </div>
 <div>
-    <div class="meteoBox"> 
+    <div class="meteoBox" *ngIf="meteoData; else loading"> 
         <h1>{{'meteo'| translate}}</h1>
-        <div class="weatherWidgetRow" style="font-size: 32px;margin-top: 5px;"> <mat-icon class="prova" aria-hidden="false" aria-label="Example home icon">brightness_7</mat-icon>
+        <div class="weatherWidgetRow" style="font-size: 32px;margin-top: 5px;" > <mat-icon class="prova" aria-hidden="false" aria-label="Example home icon">brightness_7</mat-icon>
              {{(meteoData.main.temp - 273.15).toFixed(0)}}°</div>
         <div class="weatherWidgetRow" style="font-size: 12px;">min {{(meteoData.main.temp_min - 273.15).toFixed(0)}}° / {{(meteoData.main.temp_max - 273.15).toFixed(0)}}° max</div>
         <div class="weatherWidgetRow" style="font-size: 25px;margin-top: 10px;">{{meteoData.name}}</div>
         <div class="weatherWidgetRow" style="font-size: 12px;">Umidità: {{meteoData.main.humidity}}%</div>
     </div>
+    <ng-template #loading ><mat-spinner style="margin-top: 20px; margin-left: 50px; float: left;"></mat-spinner></ng-template>
     <div class="text-area">
         <p>{{'text1'| translate}}</p>
     </div>

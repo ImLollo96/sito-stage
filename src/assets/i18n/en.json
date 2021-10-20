@@ -32,5 +32,7 @@
     "titleU":"User Data",
     "user":"User",
     "modS":"Edit your Data",
-    "nope":"Back"
+    "nope":"Back",
+    
+    "form":"Open Form"
 }

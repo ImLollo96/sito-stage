@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { MyService } from '../my.service';
+import { MyService } from '../../services/my.service';
 import { v4 as uuidv4 } from 'uuid';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
-import { DialogGridComponent } from '../dialog-grid/dialog-grid.component';
+import { DialogGridComponent } from '../../components/dialog/dialog-grid/dialog-grid.component';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
-@Component({
+@Component({ 
 	selector: 'app-grid',
 	templateUrl: './grid.component.html',
 	styleUrls: ['./grid.component.css']

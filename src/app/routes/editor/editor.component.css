@@ -1,0 +1,14 @@
+.app-ace-editor {
+    border: 2px solid #f8f9fa;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    margin: 1em auto;
+}
+.bott{
+    display: flex;
+    justify-content: center;
+}
+.bottIn{
+    height: 36px;
+    font-size: 15px;
+    margin-top: 20px;
+}

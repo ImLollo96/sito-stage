@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable, ReplaySubject } from 'rxjs';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
-import { MyService } from '../my.service';
+import { MyService } from './my.service';
  
 @Injectable({
 	providedIn: 'root'

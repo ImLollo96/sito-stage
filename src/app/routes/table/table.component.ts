@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MyService } from '../my.service';
-import { User } from '../user';
+import { MyService } from '../../services/my.service';
+import { User } from '../../user';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogExampleComponent } from '../dialog-example/dialog-example.component';
+import { DialogExampleComponent } from '../../components/dialog/dialog-example/dialog-example.component';
 import { v4 as uuidv4 } from 'uuid';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 

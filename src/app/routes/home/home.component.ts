@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MyService } from '../my.service';
-import { AppComponent } from '../app.component';
+import { MyService } from '../../services/my.service';
+import { AppComponent } from '../../app.component';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

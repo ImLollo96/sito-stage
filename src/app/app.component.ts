@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { AuthService } from './shared/auth.service';
+import { AuthService } from './services/auth.service';
 import { TranslateService } from '@ngx-translate/core'
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -67,7 +67,7 @@ export class AppComponent {
 /* #endregion */
 
 
-  /* #region--- GESTIONE TEMI ---*/
+/* #region--- GESTIONE TEMI ---*/
 
   /** Set del tema chiaro/scuro */
   setDefaultTheme() {
@@ -84,7 +84,7 @@ export class AppComponent {
   themeSwitcher() {
     const body = document.getElementsByTagName('body')[0];
     body.classList.remove(this.themeColor);
-    (this.themeColor == 'lightMode-normal') ? this.themeColor = 'darkMode-normal' : this.themeColor = 'lightMode-normal'; /** se il meta è chiaro lo mette scuro o viceversa */
+    (this.themeColor == 'lightMode-normal') ? this.themeColor = 'darkMode-normal' : this.themeColor = 'lightMode-normal'; /** se il tema è chiaro lo mette scuro o viceversa */
     body.classList.add(this.themeColor);  /** imposta tema body */
     localStorage.setItem('Type', this.themeColor);  /** setta nello storage il tema in uso */
   }
@@ -194,7 +194,7 @@ export class AppComponent {
       document.documentElement.style.setProperty('--mat-contrast-500', '#ffffff');
     }
   }
-  /* #endregion */
+/* #endregion */
 
 
   /** Set della lingua */

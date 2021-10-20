@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { StaffPageComponent } from '../staff-page/staff-page.component';
+import { StaffPageComponent } from '../../../routes/staff-page/staff-page.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
