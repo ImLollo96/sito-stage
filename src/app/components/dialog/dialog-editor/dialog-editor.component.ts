@@ -1,9 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
+import { FormlyFieldConfig } from '@ngx-formly/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EditorComponent } from 'src/app/routes/editor/editor.component';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dialog-editor',
@@ -16,10 +15,9 @@ export class DialogEditorComponent implements OnInit {
   fields : FormlyFieldConfig[];
   model: any = {};
 
-  constructor(public dialogRef: MatDialogRef<EditorComponent>, @Inject(MAT_DIALOG_DATA) public data:any, private snackBar: MatSnackBar) { 
-    this.form = new FormGroup({});
-    this.fields = data;
-    console.log('DATA: ',data);
+  constructor(public dialogRef: MatDialogRef<EditorComponent>, @Inject(MAT_DIALOG_DATA) public data:any) { 
+    this.form = new FormGroup({}); /** creazione form */
+    this.fields = data; /** configurazione del form in base a ciò che gli è stato passato */
   }
 
   ngOnInit(): void {
@@ -27,20 +25,32 @@ export class DialogEditorComponent implements OnInit {
 
   
   submit(){
-    let pippo = JSON.stringify(this.model)
-    this.dialogRef.close(pippo);
+    let content = JSON.stringify(this.model) /** conversione in stringa */
+    this.dialogRef.close(content);  /** passa il risultato e chiude il Dialog */
   }
   
 
 }
 
-// {
-//   key: 'name',
-//   type: 'input',
-//   templateOptions: {
-//     type: 'text',
-//     label: 'Name',
-//     placeholder: 'Name',
-//     required: true,
-//   }
-// }
+// [
+// 	{
+//         	"key": "name",
+//         	"type": "input",
+//         	"templateOptions": {
+//           		"type": "text",
+//           		"label": "Name",
+//           		"placeholder": "Name",
+//           		"required": true
+//         	}
+// 	},
+// 	{
+//         	"key": "lastName",
+//         	"type": "input",
+//         	"templateOptions": {
+//           		"type": "text",
+//           		"label": "Last Name",
+//           		"placeholder": "Last Name",
+//           		"required": true
+//         	}
+// 	}   
+// ]

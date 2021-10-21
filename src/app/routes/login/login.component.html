@@ -15,14 +15,22 @@
         </mat-error>
       </mat-form-field>
       <button mat-raised-button color="primary" type="submit">Login</button>
-      <p style="padding-top: 10px;padding-bottom: 10px;">Oppure</p>
+      <p style="padding-top: 10px;padding-bottom: 10px;">{{'or'| translate}}</p>
     </form>
     <div class="g_center">
-      <button mat-raised-button type="submit" (click)="signIn()" *ngIf="user==null" class="google-sigin-in">
+      <button mat-raised-button style="margin-right: 50px;" type="submit" (click)="signIn()" *ngIf="user==null" class="google-sigin-in">
         <img [src]="'assets/g-logo.png'" alt="google">
-        <span>Login con Google</span>
+        <span>{{'google'| translate}}</span>
       </button>
       <p *ngIf="user!=null">Sei già Loggato con Google</p>
+      <button mat-raised-button class="micro" *ngIf="!checkMicro()" (click)="singInMicro()">
+        <object type="image/svg+xml" data="https://s3-eu-west-1.amazonaws.com/cdn-testing.web.bas.ac.uk/scratch/bas-style-kit/ms-pictogram/ms-pictogram.svg" class="x-icon"></object> 
+        {{'micro'| translate}}
+      </button>
+      <p style="margin-left: 20px;" *ngIf="checkMicro()">{{'microIn'| translate}}</p>
+    </div>
+    <div>
+      <button mat-raised-button (click)="submitLogin()" style="margin-top: 10px; display: none;">Facebook Authentication</button>
     </div>
   </mat-card-content>
 </mat-card> 

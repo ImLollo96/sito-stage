@@ -51,6 +51,7 @@ export class AppComponent {
   setOff() {
     this.auth.setFalse(); /** lougout account "standard" */
     this.auth.signOut();  /** lougout account Google */
+    this.auth.logOutMicro();  /** lougout account Microsoft */
     this.isVisible = false; /** disabilita/rende invisibile gli elementi dell'interfiaccia */
     this.isVisibleStaff = false;  /** disabilita/rende invisibile il bottone "staff" */
   }
@@ -59,7 +60,7 @@ export class AppComponent {
   setOn() {
     if (this.auth.controlLog !== 'false') {   /** controlla se effettivamente si è fatto il login */
       this.isVisible = true;
-      if (this.auth.controlLog !== 'google') {  /** se non si è fatto l'accesso con Google abilita anche bottone "staff" */
+      if (this.auth.controlLog == 'standard') {  /** se non si è fatto l'accesso con Google abilita anche bottone "staff" */
         this.isVisibleStaff = true;
       }
     }

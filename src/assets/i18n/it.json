@@ -34,5 +34,11 @@
     "modS":"Modifica tuoi Dati",
     "nope":"Indietro",
     
-    "form":"Apri Form"
+    "form":"Apri Form",
+    "submit":"Invia",
+
+    "or":"Oppure",
+    "google":"Login con Google",
+    "micro":"Login con Microsoft",
+    "microIn":"Sei loggato con Microsoft"
 }

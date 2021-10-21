@@ -1,7 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
     <formly-form [model]="model" [fields]="fields" [form]="form"></formly-form>
     <div class="bott">
-        <button mat-button type="submit" >Submit</button>
+        <button mat-raised-button color="primary" type="submit" >{{'submit'| translate}}</button>
     </div>
-    
 </form>

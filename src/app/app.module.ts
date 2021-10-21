@@ -34,6 +34,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
+import { MsalModule, MsalService, MSAL_INSTANCE } from '@azure/msal-angular';
+import { PublicClientApplication } from '@azure/msal-browser';
 /** ROUTES */
 import { HomeComponent } from './routes/home/home.component';
 import { TableComponent } from './routes/table/table.component';
@@ -52,8 +54,18 @@ import { DialogEditorComponent } from './components/dialog/dialog-editor/dialog-
 
 
 
+
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
+}
+
+export function MSALInstanceFactory(): PublicClientApplication{
+	return new PublicClientApplication({
+		auth: {
+			clientId: 'f2b3da48-8f94-44d2-a6a8-9bf621588b4c',
+			redirectUri: 'http://localhost:4200'
+		}
+	})
 }
 
 
@@ -116,9 +128,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 		MatSnackBarModule,
 		MatProgressSpinnerModule,
 		FormlyModule.forRoot(),
-		FormlyMaterialModule
+		FormlyMaterialModule,
+		MsalModule
 	],
-	providers: [AuthGuard,StandardGuard,HttpClient,
+	providers: [AuthGuard,StandardGuard,HttpClient,MsalService,
 		{
 			provide: 'SocialAuthServiceConfig',
 			useValue: {
@@ -130,7 +143,12 @@ export function HttpLoaderFactory(http: HttpClient) {
 					}
 				]
 			} as SocialAuthServiceConfig
-		}],
+		},
+		{
+			provide: MSAL_INSTANCE,
+			useFactory: MSALInstanceFactory
+		}
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -19,6 +19,7 @@ export class EditorComponent implements AfterViewInit {
     this.doAce();
   }
 
+/** Editor ACE */
   doAce(){
     ace.config.set("fontSize", "14px");
     ace.config.set(
@@ -27,21 +28,22 @@ export class EditorComponent implements AfterViewInit {
     );
     const aceEditor = ace.edit(this.editor.nativeElement);
     //aceEditor.session.setValue("<h1>Ace Editor works great in Angular!</h1>");
-    aceEditor.setTheme("ace/theme/tomorrow");
-    aceEditor.session.setMode("ace/mode/json");
-    aceEditor.resize();
+    aceEditor.setTheme("ace/theme/tomorrow"); /** tema della box */
+    aceEditor.session.setMode("ace/mode/json"); /** gestione della sintassi nel box */
+    aceEditor.resize(); /** per modificare grandezza box */
     aceEditor.on("change", () => {
       //console.log(aceEditor.getValue());
     });
     
-    let code = aceEditor.getValue();
-    code = JSON.parse(code);
+    let code = aceEditor.getValue();  /** prende ciò che è stato scritto nella box */
+    code = JSON.parse(code);  /** lo converte */
     return code;
     
   }
 
+/** Dialog con form generata dal codice scritto su box ACE*/
   openDialog(){
-    let code = this.doAce();
+    let code = this.doAce();  /** raccolta nella variabela del contenuto del box da passare al dialog */
     console.log('CODE: ',code);
     const dialogRef = this.dialog.open(DialogEditorComponent, {  /** Apertura Dialog con passaggio dati */
   		data:code

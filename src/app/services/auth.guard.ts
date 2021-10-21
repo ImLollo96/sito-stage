@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
 /** Controllo autorizzazione ad accesso pagine */
 	canActivate() {
 		
-		if (this.auth.controlLog == 'google') {
+		if (this.auth.controlLog == 'google' || this.auth.controlLog == 'microsoft') {
 			return true;
 		 }
 		else if(this.auth.controlLog == 'standard'){

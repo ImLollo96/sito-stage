@@ -22,6 +22,8 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@azure/msal-angular": "^2.0.4",
+    "@azure/msal-browser": "^2.18.0",
     "@ngx-formly/core": "^5.10.23",
     "@ngx-formly/material": "^5.10.23",
     "@ngx-translate/core": "^13.0.0",
