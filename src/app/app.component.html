@@ -112,6 +112,12 @@
             <span>Editor</span>
           </button>
         </mat-list-item>
+        <mat-list-item *ngIf="isVisibleStaff">
+          <button mat-menu-item routerLink="realtime">
+            <mat-icon>timeline</mat-icon>
+            <span>Real Time</span>
+          </button>
+        </mat-list-item>
       </mat-list>
     </mat-sidenav>
 

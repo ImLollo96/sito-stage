@@ -11,7 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 }) 
 export class EditorComponent implements AfterViewInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {}
 
   @ViewChild("editor") private editor!: ElementRef<HTMLElement>;
 
@@ -49,7 +49,8 @@ export class EditorComponent implements AfterViewInit {
   		data:code
   	});
 
-    dialogRef.afterClosed().subscribe((result) => {   /** Chiusura Dialog */
+    dialogRef.afterClosed().subscribe((result) => { /** Chiusura Dialog */
+      localStorage.setItem('editorOutput',result);  
   		alert(result);
   	});
   }

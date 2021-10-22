@@ -27,23 +27,6 @@ export class LoginComponent implements OnInit {
 			this.user = user;
 			this.ref.detectChanges();
 		});
-		/** Gestione login facebook */
-		(window as any).fbAsyncInit = function() {
-			FB.init({
-			  appId      : '571696624112266',
-			  cookie     : true,
-			  xfbml      : true,
-			  version    : 'v3.1'
-			});
-			FB.AppEvents.logPageView();
-		  };
-		  (function(d, s, id){
-			 var js, fjs = d.getElementsByTagName(s)[0];
-			 if (d.getElementById(id)) {return;}
-			 js = d.createElement(s); js.id = id;
-			 js.src = "https://connect.facebook.net/en_US/sdk.js";
-			 fjs?.parentNode?.insertBefore(js, fjs);
-		   }(document, 'script', 'facebook-jssdk'));
 	}
 
 /** Log In con account Standard */
@@ -62,25 +45,6 @@ export class LoginComponent implements OnInit {
 		this.authService.signIn();
 	}
 
-/** Log In con Facebook */
-	submitLogin(){
-		console.log("submit login to facebook");
-		// FB.login();
-		FB.login((response)=>
-			{
-			console.log('submitLogin',response);
-			if (response.authResponse)
-			{
-				this.openSnackBar('success')
-				localStorage.setItem('loggedIn', 'google');
-			}
-			else
-			{
-			console.log('User login failed');
-			}
-		});
-	}
-
 /** Log In con Microsoft */
 	singInMicro(){
 		this.authService.logInMicro();
@@ -97,12 +61,6 @@ export class LoginComponent implements OnInit {
 		if(check == 'error'){
 			this.snackBar.open('Errore, username o password sbagliati', '', {
 				panelClass: 'error',
-				horizontalPosition: 'center',
-				duration:5000,
-			});
-		}else if(check == 'success'){
-			this.snackBar.open('Login con Facebook effettuato', '', {
-				panelClass: 'success',
 				horizontalPosition: 'center',
 				duration:5000,
 			});

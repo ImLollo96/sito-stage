@@ -8,6 +8,7 @@ import { StaffPageComponent } from './routes/staff-page/staff-page.component';
 import { TableComponent } from './routes/table/table.component';
 import { StandardGuard } from './services/standard.guard';
 import { EditorComponent } from './routes/editor/editor.component';
+import { RealTimeComponent } from './routes/real-time/real-time.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
 	{ path: 'grid', component: GridComponent, canActivate: [AuthGuard] },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'staff', component: StaffPageComponent, canActivate: [StandardGuard] },
-	{ path: 'editor', component: EditorComponent, canActivate: [StandardGuard] }
+	{ path: 'editor', component: EditorComponent, canActivate: [StandardGuard] },
+	{ path: 'realtime', component: RealTimeComponent, canActivate: [StandardGuard] }
 ];
 //data: { roles: 'standard'}
 @NgModule({

@@ -17,7 +17,7 @@ export class AuthService {
 	DATA_ELEMENT: any;
 	//isAuthenticated:boolean = JSON.parse(localStorage.getItem('loggedIn') || 'false');
 	isAuthenticated: any = localStorage.getItem('loggedIn') || 'false';
-
+  
 
 	constructor(private router: Router, private snackBar: MatSnackBar, private http: HttpClient, private myservice: MyService, private msalService: MsalService) {
 		/** Load API GOOGLE */
@@ -76,7 +76,6 @@ export class AuthService {
 
 /** Get per controllo stato Login */
 	get controlLog() {
-		console.log('Cosa sono: ',this.isAuthenticated)
 		return localStorage.getItem('loggedIn') || this.isAuthenticated;
 	}
 
