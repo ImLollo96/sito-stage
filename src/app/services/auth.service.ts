@@ -76,6 +76,7 @@ export class AuthService {
 
 /** Get per controllo stato Login */
 	get controlLog() {
+		console.log('Cosa sono: ',this.isAuthenticated)
 		return localStorage.getItem('loggedIn') || this.isAuthenticated;
 	}
 
@@ -120,6 +121,7 @@ export class AuthService {
 	logInMicro() {
 		this.msalService.loginPopup().subscribe((response: AuthenticationResult) => {
 			this.msalService.instance.setActiveAccount(response.account);
+			this.isAuthenticated = 'microsoft';
 			localStorage.setItem('loggedIn', 'microsoft');
 			this.router.navigate(['']).then(() => {		/** naviga alla home */
 				window.location.reload();
@@ -136,6 +138,7 @@ export class AuthService {
 	/** Log out MICROSOFT */
 	logOutMicro() {
 		this.msalService.logout();
+		this.isAuthenticated = 'false';
 		localStorage.setItem('loggedIn', 'false');
 	}
 

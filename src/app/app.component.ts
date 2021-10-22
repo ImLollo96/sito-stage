@@ -49,9 +49,11 @@ export class AppComponent {
    *  e richiama metodi per eseguire il Log Out
   */
   setOff() {
+    if(this.auth.controlLog == 'microsoft'){
+      this.auth.logOutMicro();  /** lougout account Microsoft */
+    }
     this.auth.setFalse(); /** lougout account "standard" */
     this.auth.signOut();  /** lougout account Google */
-    this.auth.logOutMicro();  /** lougout account Microsoft */
     this.isVisible = false; /** disabilita/rende invisibile gli elementi dell'interfiaccia */
     this.isVisibleStaff = false;  /** disabilita/rende invisibile il bottone "staff" */
   }
