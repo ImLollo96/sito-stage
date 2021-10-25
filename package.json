@@ -34,6 +34,7 @@
     "ace-builds": "^1.4.13",
     "angular-in-memory-web-api": "^0.11.0",
     "angularx-social-login": "^4.0.1",
+    "chart.js": "^3.6.0",
     "express": "^4.17.1",
     "file-system": "^2.2.2",
     "font-color-contrast": "^1.1.1",

@@ -40,5 +40,10 @@
     "or":"Or",
     "google":"Login with Google",
     "micro":"Login with Microsoft",
-    "microIn":"You are in with Microsoft"
+    "microIn":"You are in with Microsoft",
+
+    "numb":"RANDOM NUMBER",
+    "connect":"CONNECT",
+    "disconnect":"DISCONNECT",
+    "chart":"RANDOM CHART"
 }

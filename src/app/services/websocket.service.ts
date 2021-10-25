@@ -10,11 +10,10 @@ export class WebsocketService {
   socket: any;
   readonly url = "ws://localhost:3001";
 
-  constructor() { 
-    
-  }
-
-  listen(eventName:string){
+  constructor() {}
+ 
+/** Connessione a Socket.io */
+  listen(/** richiesa tipo di servizio */eventName:string){
     this.socket = io(this.url);
     return new Observable((subscriber) => {
       this.socket.on(eventName, (data) => {
@@ -23,10 +22,12 @@ export class WebsocketService {
     });
   }
 
+/** Passaggio dati al server */
   emit(eventName:string, data:any){
     this.socket.emit(eventName, data);
   }
 
+/** Disconnessione da Socket.io */
   disconnectSocket(){
     this.socket.disconnect();
   }

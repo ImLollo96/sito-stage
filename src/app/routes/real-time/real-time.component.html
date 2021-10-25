@@ -1,8 +1,23 @@
 <div style="text-align: center;">
-    <h1 style="font-size: 300px;"> {{num}} </h1>
+    <h1 style="margin-top: 5px;">{{'numb'| translate}}</h1>
+    <h1 style="font-size: 200px;"> {{num}} </h1>
+</div>
+<div style="display: flex; justify-content: center; margin-top: 10px;">
+    <button mat-raised-button color="primary" style="margin-right: 20px;" (click)="connect()" >{{'connect'| translate}}</button>
+    <button mat-raised-button style="margin-left: 20px; background-color: rgb(202, 95, 95);" (click)="disconnect()" >{{'disconnect'| translate}}</button>
 </div>
 
-<div style="display: flex; justify-content: center;">
-    <button mat-raised-button color="primary" style="margin-right: 20px;" (click)="connect()" >CONNETTITI</button>
-    <button mat-raised-button style="margin-left: 20px; background-color: rgb(202, 95, 95);" (click)="disconnect()" >DISCONNETTI</button>
+
+
+<div style="text-align: center; margin-top: 10px;">
+    <h1>{{'chart'| translate}}</h1>
+</div>
+<div style="display: flex; justify-content: center; margin-top: 10px;">
+    <div style="width: 50%;">
+        <canvas id="canvas"></canvas>
+    </div>
+</div>
+<div style="display: flex; justify-content: center; margin-top: 10px; margin-bottom: 20px;">
+    <button mat-raised-button color="primary" style="margin-right: 20px;" (click)="connectChart()" >{{'connect'| translate}}</button>
+    <button mat-raised-button style="margin-left: 20px; background-color: rgb(202, 95, 95);" (click)="disconnect()" >{{'disconnect'| translate}}</button>
 </div>

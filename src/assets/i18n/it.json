@@ -40,5 +40,10 @@
     "or":"Oppure",
     "google":"Login con Google",
     "micro":"Login con Microsoft",
-    "microIn":"Sei loggato con Microsoft"
+    "microIn":"Sei loggato con Microsoft",
+
+    "numb":"NUMERO RANDOM",
+    "connect":"CONNETTITI",
+    "disconnect":"DISCONNETTITI",
+    "chart":"GRAFICO RANDOM"
 }
