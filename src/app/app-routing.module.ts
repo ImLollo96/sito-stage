@@ -9,6 +9,7 @@ import { TableComponent } from './routes/table/table.component';
 import { StandardGuard } from './services/standard.guard';
 import { EditorComponent } from './routes/editor/editor.component';
 import { RealTimeComponent } from './routes/real-time/real-time.component';
+import { ChatComponent } from './routes/chat/chat.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'staff', component: StaffPageComponent, canActivate: [StandardGuard] },
 	{ path: 'editor', component: EditorComponent, canActivate: [StandardGuard] },
-	{ path: 'realtime', component: RealTimeComponent, canActivate: [StandardGuard] }
+	{ path: 'realtime', component: RealTimeComponent, canActivate: [StandardGuard] },
+	{ path: 'chat', component: ChatComponent, canActivate: [AuthGuard] }
 ];
 //data: { roles: 'standard'}
 @NgModule({

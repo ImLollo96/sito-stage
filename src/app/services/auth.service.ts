@@ -53,6 +53,7 @@ export class AuthService {
 				console.log('Il mio id', id);
 				localStorage.setItem('loggedIn', 'standard');	/** imposta il tipo di account nello storage */
 				localStorage.setItem('userIn', id);
+				localStorage.setItem('userName', u);
 				this.router.navigate(['']).then(() => {		/** naviga alla home */
 					window.location.reload();
 					this.openSnackBar('standard');	/** chiamata a snackbar */
@@ -69,6 +70,7 @@ export class AuthService {
 		console.log(this.isAuthenticated);
 		localStorage.setItem('loggedIn', 'false');
 		localStorage.removeItem('userIn');
+		localStorage.removeItem('userName');
 		return this.isAuthenticated;
 	}
 /* #endregion */

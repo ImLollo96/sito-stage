@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EditorComponent } from 'src/app/routes/editor/editor.component';
+import { toArray } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dialog-editor',
@@ -18,6 +19,8 @@ export class DialogEditorComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<EditorComponent>, @Inject(MAT_DIALOG_DATA) public data:any) { 
     this.form = new FormGroup({}); /** creazione form */
     this.fields = data; /** configurazione del form in base a ciò che gli è stato passato */
+    console.log('DIALOG ',JSON.stringify(data));
+    localStorage.setItem('editorOutput', JSON.stringify(data, null, 2));
   }
 
   ngOnInit(): void {

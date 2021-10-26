@@ -43,7 +43,8 @@ import { GridComponent } from './routes/grid/grid.component';
 import { LoginComponent } from './routes/login/login.component';
 import { StaffPageComponent } from './routes/staff-page/staff-page.component';
 import { EditorComponent } from './routes/editor/editor.component';
-import { RealTimeComponent } from './routes/real-time/real-time.component'; 
+import { RealTimeComponent } from './routes/real-time/real-time.component';
+import { ChatComponent } from './routes/chat/chat.component'; 
 /** SERVICES */
 import { StandardGuard } from './services/standard.guard';
 import { AuthGuard } from './services/auth.guard';
@@ -86,6 +87,7 @@ export function MSALInstanceFactory(): PublicClientApplication{
      	EditorComponent,
      	DialogEditorComponent,
       RealTimeComponent,
+      ChatComponent,
 
 	],
 	entryComponents: [DialogExampleComponent, DialogGridComponent,LogoutSnackBarComponent],

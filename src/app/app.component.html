@@ -118,6 +118,12 @@
             <span>Real Time</span>
           </button>
         </mat-list-item>
+        <mat-list-item *ngIf="isVisible">
+          <button mat-menu-item routerLink="chat">
+            <mat-icon>chat</mat-icon>
+            <span>Chat</span>
+          </button>
+        </mat-list-item>
       </mat-list>
     </mat-sidenav>
 
