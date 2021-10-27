@@ -24,11 +24,13 @@ export class WebsocketService {
 
 /** Passaggio dati al server */
   emit(eventName:string, data:any){
-    this.socket.emit(eventName, data);
+    this.socket.emit(eventName, (data:{user:string, message:string}) => {
+      
+    });
   }
 
   getMessage(/** richiesa tipo di servizio */eventName:string){
-    this.socket = io(this.url);
+    //this.socket = io(this.url);
     return new Observable<{user:string, message:string}>((subscriber) => {
       this.socket.on(eventName, (data) => {
         subscriber.next(data);

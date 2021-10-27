@@ -1,3 +1,8 @@
+.main{
+    justify-content: center;
+    display: flex;
+    max-height: 50%;
+}
 .box{
     width: 50%;
     max-width: 800px;
@@ -8,43 +13,65 @@
     margin-bottom: 20px;
     border-radius: 10px;
 }
-.testo-box{
-    width: 100%;
-    /* position: sticky; */
-    /* position: -webkit-sticky; */
-    /* bottom: 0; */
-    background-color: whitesmoke;
-    height: 46px;
-    border-top: black;
-    border-style: solid;
-    border-radius: 10px;
-}
 .message-box{
-    height: 650px;
+    height: 640px;
     background-color: rgb(235, 235, 235);
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     position: relative;
-    overflow: hidden;
-}
-.main{
-    justify-content: center;
+    overflow: auto;
     display: flex;
-    max-height: 50%;
+    flex-direction: column;
 }
-.me{
-    display: flex;
-    justify-content: flex-end;
-    background-color: rgb(103, 214, 103);
+.message-container{
+    background: rgb(200, 201, 200);
+    height: auto;
+    width: 35%;
+    border-radius: 5px;
+    margin: 0.5em 1em;
+    overflow: auto;
+}
+.message-container-right{
+    background: rgb(121, 219, 107);
+    height: auto;
+    width: 35%;
+    border-radius: 5px;
+    margin: 0.5em 1em;
+    overflow: auto;
+    float: right;
+}
+.user{
+    color: black;
+    font-size: 1.4em;
+    margin: 0 0.8em;
+}
+.mess{
+    color: black;
+    font-size: 1.2em;
+    margin: 0 0.8em;
+}
+.when{
+    float:right;
+    font-size: 0.7em;
+    color: rgba(0, 0, 0, 0.432);
+    margin: 0 0.8em;
+}
+.testo-box{
+    width: 100%;
+    background-color: whitesmoke;
+    height: 55px;
+    border-top: black;
+    border-style: solid;
+    border-radius: 10px;
 }
 .inp{
     background-color: white;
     border: 1px solid #D8DDEC;
     box-sizing: border-box;
-    border-radius: 20px;
     font-size: 1rem;
     color: black;
-    width: 85%;
+    max-width: 80%;
     height: 40px;
     font-size: 25px;
+    margin-top: 5px;
 }

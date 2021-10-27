@@ -1,13 +1,17 @@
 <div class="main">
     <div class="box">
-        <div class="message-box">
-            <div  *ngFor="let item of messageArray" [ngIf]="item?.user === currentUser && 'me'">
-                <p class="message-container"> {{item?.message}} </p>
+        <div #scrollMe class="message-box">
+            <div  *ngFor="let item of messageArray"> 
+                <div  [ngClass]="item.user===currentUser ? 'message-container-right' : 'message-container'">
+                    <p class="user"><strong>{{item.user}}</strong></p>
+                    <p class="mess"> {{item.message}} </p>
+                    <p class="when"> {{item.when}} </p>
+                </div>
             </div>
         </div> 
         <div class="testo-box">
             <input matInput placeholder="Inserisci testo" [(ngModel)]="messageText" class="inp">
-            <button mat-raised-button color="primary" style="width: 15%; height: 40px; float: right;">INVIA</button>
+            <button mat-raised-button color="primary" style="width: 15%; max-width: 15%; height: 40px; float: right; margin-top: 5px;" (click)="sendMessage()">INVIA</button>
         </div>
     </div>
 </div>
