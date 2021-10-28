@@ -1,23 +1,12 @@
 .main{
     justify-content: center;
     display: flex;
-    max-height: 50%;
+    margin-bottom: 55px;
+    min-height: calc(100vh - 64px - 64px);
 }
-.box{
-    width: 50%;
-    max-width: 800px;
-    height: 700px;
-    border-color: rgb(71, 89, 255);
-    border-style: solid;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-}
+
 .message-box{
-    height: 640px;
-    background-color: rgb(235, 235, 235);
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    width: 100%;
     position: relative;
     overflow: auto;
     display: flex;
@@ -26,7 +15,7 @@
 .message-container{
     background: rgb(200, 201, 200);
     height: auto;
-    width: 35%;
+    width: 45%;
     border-radius: 5px;
     margin: 0.5em 1em;
     overflow: auto;
@@ -34,7 +23,7 @@
 .message-container-right{
     background: rgb(121, 219, 107);
     height: auto;
-    width: 35%;
+    width: 45%;
     border-radius: 5px;
     margin: 0.5em 1em;
     overflow: auto;
@@ -56,14 +45,29 @@
     color: rgba(0, 0, 0, 0.432);
     margin: 0 0.8em;
 }
+.del-edit{
+    font-size: 0.7em;
+    color: rgba(0, 0, 0, 0.432);
+    margin: 0 0.8em;
+    cursor: pointer;
+}
 .testo-box{
-    width: 100%;
+    width: 90%;
     background-color: whitesmoke;
     height: 55px;
-    border-top: black;
     border-style: solid;
     border-radius: 10px;
+    bottom: 64px;
+    position: fixed;
+   
+    
+    
+
+
+    /* position: sticky; */
+    /* position: -webkit-sticky; */
 }
+
 .inp{
     background-color: white;
     border: 1px solid #D8DDEC;
@@ -74,4 +78,7 @@
     height: 40px;
     font-size: 25px;
     margin-top: 5px;
+}
+textarea {
+    resize: none;
 }

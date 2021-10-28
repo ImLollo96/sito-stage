@@ -1,0 +1,16 @@
+<h1 mat-dialog-title style="text-align: center;">{{'titleU' | translate}}</h1>
+<mat-dialog-content [formGroup]="form">
+  
+    <mat-form-field >
+        <mat-label>Testo</mat-label>
+        <input matInput formControlName="message" required >
+    </mat-form-field>
+    
+</mat-dialog-content>
+
+<div mat-dialog-actions class="bott">
+    <button mat-button (click)="onNoClick()">{{'nope' | translate}}</button>
+    <button mat-button  (click)="save()" cdkFocusInitial>Ok</button>
+</div>
+
+<!-- {{'text' | translate}} -->

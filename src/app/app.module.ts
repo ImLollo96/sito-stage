@@ -53,6 +53,7 @@ import { DialogExampleComponent } from './components/dialog/dialog-example/dialo
 import { DialogGridComponent } from './components/dialog/dialog-grid/dialog-grid.component';
 import { DialogStaffComponent } from './components/dialog/dialog-staff/dialog-staff.component';
 import { DialogEditorComponent } from './components/dialog/dialog-editor/dialog-editor.component';
+import { DialogChatComponent } from './components/dialog/dialog-chat/dialog-chat.component';
 
 
 
@@ -88,6 +89,7 @@ export function MSALInstanceFactory(): PublicClientApplication{
      	DialogEditorComponent,
       RealTimeComponent,
       ChatComponent,
+      DialogChatComponent,
 
 	],
 	entryComponents: [DialogExampleComponent, DialogGridComponent,LogoutSnackBarComponent],

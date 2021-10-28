@@ -19,7 +19,7 @@ const routes: Routes = [
 	{ path: 'staff', component: StaffPageComponent, canActivate: [StandardGuard] },
 	{ path: 'editor', component: EditorComponent, canActivate: [StandardGuard] },
 	{ path: 'realtime', component: RealTimeComponent, canActivate: [StandardGuard] },
-	{ path: 'chat', component: ChatComponent, canActivate: [AuthGuard] }
+	{ path: 'chat', component: ChatComponent, canActivate: [StandardGuard] }
 ];
 //data: { roles: 'standard'}
 @NgModule({

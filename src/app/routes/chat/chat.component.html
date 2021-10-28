@@ -1,19 +1,30 @@
 <div class="main">
-    <div class="box">
-        <div #scrollMe class="message-box">
-            <div  *ngFor="let item of messageArray"> 
-                <div  [ngClass]="item.user===currentUser ? 'message-container-right' : 'message-container'">
+    <div #scrollMe class="message-box">
+        <div  *ngFor="let item of messageArray"> 
+            <div  class="message-container" *ngIf="item.user!==currentUser; else me">
+                <p class="user"><strong>{{item.user}}</strong></p>
+                <p class="mess"> {{item.message}} </p>
+                <p class="when"> {{item.when}} </p>
+            </div>
+            <ng-template #me>
+                <div [style.background]="colorbg" class="message-container-right">
                     <p class="user"><strong>{{item.user}}</strong></p>
                     <p class="mess"> {{item.message}} </p>
-                    <p class="when"> {{item.when}} </p>
+                    <p><a class="del-edit" (click)="editMessage(item.id)">modifica</a><a class="del-edit" (click)="deleteMessage(item.id)">elimina</a><a class="when">{{item.when}}</a></p>
                 </div>
-            </div>
-        </div> 
-        <div class="testo-box">
-            <input matInput placeholder="Inserisci testo" [(ngModel)]="messageText" class="inp">
-            <button mat-raised-button color="primary" style="width: 15%; max-width: 15%; height: 40px; float: right; margin-top: 5px;" (click)="sendMessage()">INVIA</button>
+            </ng-template>
         </div>
     </div>
+
+    <div class="testo-box">
+        <textarea matInput [(ngModel)]="messageText" class="inp"></textarea>
+        <button mat-raised-button color="primary" style="width: 15%; max-width: 15%; height: 40px; float: right; margin-top: 5px; margin-right: 20px;" (click)="sendMessage()">INVIA</button>
+    </div>
 </div>
+
+
     
+
+    
+
 

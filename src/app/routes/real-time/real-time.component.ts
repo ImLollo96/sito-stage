@@ -99,9 +99,7 @@ export class RealTimeComponent implements OnInit {
       if(this.isSubscribeChart != undefined){
         this.isSubscribeChart.unsubscribe();  /** si disiscrive dal servizio  */
       }
-    }else{
-      console.log('NO');
-    }
+    }else{ }
     this.onNum = false;
     this.onChart = false;
   }

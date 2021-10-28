@@ -31,7 +31,7 @@ export class TableComponent implements OnInit {
 			mail: ['', Validators.required]
 		});
 	}
-
+ 
 	ngOnInit(): void {
 		this.subTo();
 	}
@@ -121,7 +121,7 @@ export class TableComponent implements OnInit {
 			}
 		);
 	}
-
+ 
 /** Snackbar */
 	openSnackBar(/** string passata da funzioni per selezionare evento */check:string){
 		let config = new MatSnackBarConfig();
