@@ -61,7 +61,7 @@
     position: fixed; */
    
 
-    width: calc(100% - 180px);
+    width: 100%;
     background-color: #424242;
     border-top: 1px solid grey;
     /* height: 52px; */
@@ -76,6 +76,11 @@
 
     /* position: sticky; */
     /* position: -webkit-sticky; */
+}
+@media (min-width: 600px) {
+    .testo-box {
+        width: calc(100% - 180px);
+    }
 }
 
 .inp{
