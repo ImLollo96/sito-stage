@@ -8,9 +8,13 @@
             </div>
             <ng-template #me>
                 <div [style.background]="colorbg" class="message-container-right">
-                    <p class="user"><strong>{{item.user}}</strong></p>
-                    <p class="mess"> {{item.message}} </p>
-                    <p><a class="del-edit" (click)="editMessage(item.id)">modifica</a><a class="del-edit" (click)="deleteMessage(item.id)">elimina</a><a class="when">{{item.when}}</a></p>
+                    <p [style.color]="text" class="user"><strong>{{item.user}}</strong></p>
+                    <p [style.color]="text" class="mess"> {{item.message}} </p>
+                    <div>
+                        <a [style.color]="text" class="del-edit" (click)="editMessage(item.id)">modifica</a>
+                        <a [style.color]="text" class="del-edit" (click)="deleteMessage(item.id)">elimina</a>
+                        <a [style.color]="text" class="when">{{item.when}}</a>
+                    </div>
                 </div>
             </ng-template>
         </div>

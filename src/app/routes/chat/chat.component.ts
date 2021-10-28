@@ -13,7 +13,8 @@ import { DialogChatComponent } from 'src/app/components/dialog/dialog-chat/dialo
 })
 export class ChatComponent implements OnInit, AfterViewChecked {
 
-  colorbg:any;
+  colorbg:any = localStorage.getItem('colorUsed');
+  text:any = localStorage.getItem('textUsed');
 
   today= new Date();
   jstoday = '';

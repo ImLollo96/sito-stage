@@ -186,6 +186,7 @@ export class AppComponent {
 
     let darker = this.shade(this.colorSet);
     let brighter = this.tint(this.colorSet);
+    localStorage.setItem('colorUsed', brighter);
     //console.log('darker: ',darker,'brighter: ',brighter);
     document.documentElement.style.setProperty('--mat-primary-100', brighter);  /** setta la variante più chiara del tema */
     document.documentElement.style.setProperty('--mat-primary-700', darker);  /** setta la variante più scura del tema */
@@ -193,8 +194,10 @@ export class AppComponent {
     let check = this.isBright(this.colorSet);   /** risultato controllo livello di luminosità */
     if (check === true) {   /** in base al risultato decide se presentare testo (ecc...) di colore nero e o bianco */
       document.documentElement.style.setProperty('--mat-contrast-500', '#000000');
+      localStorage.setItem('textUsed', '#000000');
     } else {
       document.documentElement.style.setProperty('--mat-contrast-500', '#ffffff');
+      localStorage.setItem('textUsed', '#ffffff');
     }
   }
 /* #endregion */

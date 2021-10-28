@@ -2,7 +2,7 @@
     justify-content: center;
     display: flex;
     margin-bottom: 55px;
-    min-height: calc(100vh - 64px - 64px);
+    /* min-height: calc(100vh - 64px - 64px); */
 }
 
 .message-box{
@@ -15,40 +15,60 @@
 .message-container{
     background: rgb(200, 201, 200);
     height: auto;
-    width: 45%;
+    max-width: 38%;
     border-radius: 5px;
     margin: 0.5em 1em;
     overflow: auto;
+    float: left;
 }
 .message-container-right{
-    background: rgb(121, 219, 107);
     height: auto;
-    width: 45%;
+    max-width: 38%;
     border-radius: 5px;
     margin: 0.5em 1em;
     overflow: auto;
-    float: right;
+    float: left;
+}
+@media only screen and (max-width: 1000px) {
+    .message-container-right{
+        height: auto;
+        max-width: 80%;
+        border-radius: 5px;
+        margin: 0.5em 1em;
+        overflow: auto;
+        float: right;
+    }
+    .message-container{
+        background: rgb(200, 201, 200);
+        height: auto;
+        max-width: 45%;
+        border-radius: 5px;
+        margin: 0.5em 1em;
+        overflow: auto;
+        float: left;
+    }
 }
 .user{
     color: black;
-    font-size: 1.4em;
+    font-size: 0.9em;
     margin: 0 0.8em;
 }
 .mess{
     color: black;
-    font-size: 1.2em;
+    font-size: 0.8em;
     margin: 0 0.8em;
 }
 .when{
     float:right;
-    font-size: 0.7em;
-    color: rgba(0, 0, 0, 0.432);
+    font-size: 0.6em;
+    color: black;
     margin: 0 0.8em;
 }
 .del-edit{
+    float: left;
     font-size: 0.7em;
-    color: rgba(0, 0, 0, 0.432);
-    margin: 0 0.8em;
+    color: black;
+    margin: 0 0.4em;
     cursor: pointer;
 }
 .testo-box{
@@ -71,18 +91,12 @@
     justify-content: space-between;
     padding: 6px;
     
-    
-
-
-    /* position: sticky; */
-    /* position: -webkit-sticky; */
 }
 @media (min-width: 600px) {
     .testo-box {
         width: calc(100% - 180px);
     }
 }
-
 .inp{
     background-color: white;
     border: 1px solid #D8DDEC;
@@ -99,3 +113,5 @@
 textarea {
     resize: none;
 }
+
+
