@@ -17,7 +17,14 @@
     </div>
 
     <div class="testo-box">
-        <textarea matInput [(ngModel)]="messageText" class="inp"></textarea>
+        <textarea 
+            matInput [(ngModel)]="messageText"
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"
+            class="inp"
+        ></textarea>
         <button 
             mat-raised-button color="primary"
             style="width: 75px; height: 40px;" 
