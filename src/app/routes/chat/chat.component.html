@@ -18,7 +18,11 @@
 
     <div class="testo-box">
         <textarea matInput [(ngModel)]="messageText" class="inp"></textarea>
-        <button mat-raised-button color="primary" style="width: 15%; max-width: 15%; height: 40px; float: right; margin-top: 5px; margin-right: 20px;" (click)="sendMessage()">INVIA</button>
+        <button 
+            mat-raised-button color="primary"
+            style="width: 75px; height: 40px;" 
+            (click)="sendMessage()"
+        >INVIA</button>
     </div>
 </div>
 
