@@ -1,7 +1,7 @@
 <div class="main" (click)="disappearContext()">
     <div #scrollMe class="message-box">
         <div  *ngFor="let item of messageArray"> 
-            <div  class="message-container" *ngIf="item.user!==currentUser; else me">
+            <div  class="message-container" *ngIf="item.user!==currentUser; else me" (contextmenu)="contextMenuGrey($event)">
                 <p class="user"><strong>{{item.user}}</strong></p>
                 <p class="mess"> {{item.message}} </p>
                 <p class="when"> {{item.when}} </p>

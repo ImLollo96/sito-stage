@@ -41,7 +41,7 @@
     .message-container{
         background: rgb(200, 201, 200);
         height: auto;
-        max-width: 45%;
+        max-width: 80%;
         border-radius: 5px;
         margin: 0.5em 1em;
         overflow: auto;

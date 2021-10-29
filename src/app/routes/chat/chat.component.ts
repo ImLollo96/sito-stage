@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {io} from 'socket.io-client';
 import { MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import {formatDate } from '@angular/common';
@@ -6,16 +6,17 @@ import { v4 as uuidv4 } from 'uuid';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogChatComponent } from 'src/app/components/dialog/dialog-chat/dialog-chat.component';
 import { MyService } from 'src/app/services/my.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit, AfterViewChecked {
+export class ChatComponent implements OnInit {
 
   @ViewChild('menu') menu!:ElementRef;  /** creazione element per il menu */
-  
+  isSubscribe! : Subscription;  /** subscription del num */
 
   colorbg:any = localStorage.getItem('colorUsed');  /** get primary color */
   text:any = localStorage.getItem('textUsed');  /** get colore del testo in base al primary color */
@@ -26,7 +27,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   id:any; /** id del messaggio selezionato */
   messageText:string='';  /** testo scritto nel textarea */
   messageArray:any; /** Array contente i messaggi */
-  counter:number = 0; /** gestione dello scroll automatico della pagina */
 
   socket:any; 
   readonly url = "ws://localhost:3001";
@@ -42,20 +42,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   ngOnInit(): void { 
     this.deleteBroadcast();
     this.editBroadcast();
-  }
-
-  ngAfterViewChecked() {  
-    setInterval(() => {
-      this.scrollToBottom();
+    setTimeout(()=>{                           
+      window.scrollTo(0,document.body.scrollHeight);  /** Scroll automatico della pagina */
     }, 500);
-  }
-  
-  /** Scroll automatico della pagina */
-  scrollToBottom() {
-    if(this.counter == 0){
-        window.scrollTo(0,document.body.scrollHeight);
-        this.counter = this.counter + 1;
-    }
   }
 
   /** ContextMenu CUSTOM */
@@ -71,6 +60,11 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     }
   }
 
+  contextMenuGrey(e:any){
+    e.preventDefault();
+    this.openSnackBar('noMenu');
+  } 
+
   /** Chiurusa ContextMenu CUSTOM */
   disappearContext(){
     this.menu.nativeElement.style.display = "none";
@@ -78,7 +72,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   /** GET history dei messaggi */
   receiveHistory(){
-    this.myService.getMessage().subscribe(
+    this.isSubscribe = this.myService.getMessage().subscribe(
 			(response) => {
 				this.messageArray = response;
 			},
@@ -97,7 +91,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         if(data.user != this.currentUser){
           this.playSound();
         }
-        this.counter = 0;
+        window.scrollTo(0,document.body.scrollHeight);
       }
     });
   }
@@ -110,9 +104,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       this.socket.emit('message', {id: id,user:this.currentUser, message:this.messageText, when:this.jstoday});
       this.messageArray.push({id: id, user: this.currentUser, message:this.messageText, when:this.jstoday});
       this.messageText = '';
-      this.counter = 0;
+      window.scrollTo(0,document.body.scrollHeight);
     }else{
-      //this.openSnackBar('inserire')
+      this.openSnackBar('inserire')
     }
   }
 
@@ -150,7 +144,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         dt.user = result.user;
         dt.message = result.message;
         dt.when = result.when;
-        //this.openSnackBar('modificato');
+        this.openSnackBar('modificato');
 			}
 		});
   }
@@ -197,8 +191,20 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 				horizontalPosition: 'center',
 				duration:2000,
 			});
+		}else if(check=='noMenu'){
+			this.snackBar.open('Azione non disponibile su messaggi altrui', '', {
+				panelClass: 'info',
+				horizontalPosition: 'center',
+				duration:2000,
+			});
 		}else{
 			alert('Errore');
 		}
 	}
+
+  ngOnDestroy(){
+    this.socket.disconnect();  /** si disconnete dal socket */
+    this.isSubscribe.unsubscribe(); /** si disiscrive dal servizio */
+    console.log('DESTROY');
+  }
 }
