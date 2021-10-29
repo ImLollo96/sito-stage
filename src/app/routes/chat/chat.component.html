@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" (click)="disappearContext()">
     <div #scrollMe class="message-box">
         <div  *ngFor="let item of messageArray"> 
             <div  class="message-container" *ngIf="item.user!==currentUser; else me">
@@ -7,12 +7,16 @@
                 <p class="when"> {{item.when}} </p>
             </div>
             <ng-template #me>
-                <div [style.background]="colorbg" class="message-container-right">
+                <div [style.background]="colorbg" class="message-container-right" (contextmenu)="contextMenu($event, item.id)">
+                    <div class="customContext" #menu>
+                        <ul>
+                            <li><a (click)="editMessage()">Modifica</a></li>
+                            <li><a (click)="deleteMessage()">Elimina</a></li>
+                        </ul>
+                    </div>
                     <p [style.color]="text" class="user"><strong>{{item.user}}</strong></p>
                     <p [style.color]="text" class="mess"> {{item.message}} </p>
                     <div>
-                        <a [style.color]="text" class="del-edit" (click)="editMessage(item.id)">modifica</a>
-                        <a [style.color]="text" class="del-edit" (click)="deleteMessage(item.id)">elimina</a>
                         <a [style.color]="text" class="when">{{item.when}}</a>
                     </div>
                 </div>

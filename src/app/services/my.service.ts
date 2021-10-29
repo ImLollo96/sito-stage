@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class MyService {
 
 	meteoData:any;
+	url:any = "http://localhost:3001/";
 
 	constructor(private http: HttpClient) {	}
 
@@ -25,6 +26,10 @@ export class MyService {
 /** API per Login */
 	getPass(): Observable<any> {
 		return this.http.get('/api/password');
+	}
+
+	getMessage(){
+		return this.http.get(this.url);
 	}
 
 /** API per Widget Meteo */

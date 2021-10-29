@@ -108,7 +108,7 @@ export class TableComponent implements OnInit {
 	clearForm() {
 		this.form.reset();
 	}
-
+ 
 /** Chiamata a servizio */
 	subTo() {
 		this.myservice.getInformation().subscribe(

@@ -1,10 +1,11 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ViewChild, ElementRef } from '@angular/core';
 import {io} from 'socket.io-client';
 import { MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import {formatDate } from '@angular/common';
 import { v4 as uuidv4 } from 'uuid';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogChatComponent } from 'src/app/components/dialog/dialog-chat/dialog-chat.component';
+import { MyService } from 'src/app/services/my.service';
 
 @Component({
   selector: 'app-chat',
@@ -13,66 +14,95 @@ import { DialogChatComponent } from 'src/app/components/dialog/dialog-chat/dialo
 })
 export class ChatComponent implements OnInit, AfterViewChecked {
 
-  colorbg:any = localStorage.getItem('colorUsed');
-  text:any = localStorage.getItem('textUsed');
+  @ViewChild('menu') menu!:ElementRef;  /** creazione element per il menu */
+  
 
-  today= new Date();
+  colorbg:any = localStorage.getItem('colorUsed');  /** get primary color */
+  text:any = localStorage.getItem('textUsed');  /** get colore del testo in base al primary color */
+
+  today= new Date();  /** Data per il messaggio */
   jstoday = '';
 
-  roomId!:string;
-  messageText:string='';
-  messageArray:{id:string, user:string, message:string, when:string}[]=[];
-  counter:number = 0;
+  id:any; /** id del messaggio selezionato */
+  messageText:string='';  /** testo scritto nel textarea */
+  messageArray:any; /** Array contente i messaggi */
+  counter:number = 0; /** gestione dello scroll automatico della pagina */
 
-  socket:any;
+  socket:any; 
   readonly url = "ws://localhost:3001";
+  currentUser:string=JSON.stringify(localStorage.getItem('userName'));  /** get get username dell'utente loggato */
 
-  currentUser:string=JSON.stringify(localStorage.getItem('userName'));
-
-  constructor(private snackBar: MatSnackBar, public dialog: MatDialog) {
-    this.socket = io(this.url);
+  constructor(private snackBar: MatSnackBar, public dialog: MatDialog, private myService: MyService) {
+    this.socket = io(this.url); /** inizializzazione del socket */
     this.currentUser = JSON.parse(this.currentUser);
-    this.receiveHistory();
     this.receiveMessage();
+    this.receiveHistory();
    }
 
   ngOnInit(): void { 
-    
+    this.deleteBroadcast();
+    this.editBroadcast();
   }
 
-  ngAfterViewChecked() {        
+  ngAfterViewChecked() {  
     setInterval(() => {
       this.scrollToBottom();
-    }, 1500);
+    }, 500);
   }
   
+  /** Scroll automatico della pagina */
   scrollToBottom() {
     if(this.counter == 0){
         window.scrollTo(0,document.body.scrollHeight);
         this.counter = this.counter + 1;
     }
-  } 
-
-  receiveHistory(){
-    this.socket.on('message-history', (data) =>{
-      this.messageArray = [];
-      for (var i = 0; i < data.length; i++) {
-          var dati = data[i];
-          this.messageArray.push({id: dati.id, user: dati.user, message:dati.message, when: dati.when});
-      } 
-    });
   }
 
+  /** ContextMenu CUSTOM */
+  contextMenu(e:any, id){
+    this.id = id;
+    e.preventDefault();
+    this.menu.nativeElement.style.display = "block";
+    this.menu.nativeElement.style.top = e.pageY - window.pageYOffset + "px";
+    if(window.innerWidth< 1000){
+      this.menu.nativeElement.style.left = e.pageX - 150 + "px";
+    }else{
+      this.menu.nativeElement.style.left = e.pageX + "px";
+    }
+  }
+
+  /** Chiurusa ContextMenu CUSTOM */
+  disappearContext(){
+    this.menu.nativeElement.style.display = "none";
+  }
+
+  /** GET history dei messaggi */
+  receiveHistory(){
+    this.myService.getMessage().subscribe(
+			(response) => {
+				this.messageArray = response;
+			},
+			(error) => {
+        console.log(error);
+				this.openSnackBar('errore');
+			}
+		);
+  }
+
+  /** Recupera eventuali nuovi messaggi inviati */
   receiveMessage(){
     this.socket.on('message-broadcast', (data:{id:string, user:string, message:string, when:string}) =>{
       if(data){
         this.messageArray.push({id: data.id, user: data.user, message:data.message, when:data.when});
-        this.playSound();
+        if(data.user != this.currentUser){
+          this.playSound();
+        }
         this.counter = 0;
       }
     });
   }
 
+  /** Manda al socket il messaggio inserito e lo aggiunge all'array */
   sendMessage(){
     this.jstoday = formatDate(this.today, 'dd-MM-yyyy HH:mm:ss', 'en-US', '+0200');
     let id = uuidv4();
@@ -82,29 +112,62 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       this.messageText = '';
       this.counter = 0;
     }else{
-      this.openSnackBar('inserire')
+      //this.openSnackBar('inserire')
     }
   }
 
-  deleteMessage(id){
-    this.socket.emit('delete', id);
+  /** Elimina il messaggio selezionato sia sul server che in locale */
+  deleteMessage(){
+    this.menu.nativeElement.style.display = "none";
+    console.log('ID DELETE: ', this.id);
+    this.socket.emit('delete', this.id);
+    const index = this.messageArray.findIndex((res) => res.id === this.id);
+    this.messageArray.splice(index, 1);
   }
 
-  editMessage(id){
-    const index = this.messageArray.find((res) => res.id === id);
+  /** Recupera dal server eventuali messaggi eliminati */
+  deleteBroadcast(){
+    this.socket.on('message-delete', (id) =>{
+      const index = this.messageArray.findIndex((res) => res.id === id);
+      this.messageArray.splice(index, 1);
+    });
+  }
+
+  /** Modifica il messaggio selezionato sia sul server che in locale */
+  editMessage(){
+    this.menu.nativeElement.style.display = "none";
+    const index = this.messageArray.find((res) => res.id === this.id);
     const dialogRef = this.dialog.open(DialogChatComponent, {	/** apertura Dialog */
 			data: index
 		});
 
     dialogRef.afterClosed().subscribe((result) => {
 			if (result.id != undefined) {
-        this.socket.emit('edit', id, result);
-        this.openSnackBar('modificato');
+        this.socket.emit('edit',this.id, result);
+        const arr = this.messageArray.find((res) => res.id === this.id);
+        const dt = arr;
+        dt.id = result.id;
+        dt.user = result.user;
+        dt.message = result.message;
+        dt.when = result.when;
+        //this.openSnackBar('modificato');
 			}
 		});
-    
   }
 
+  /** Recupera dal server eventuali messaggi modificati */
+  editBroadcast(){
+    this.socket.on('message-edit', (id, data) =>{
+      const arr = this.messageArray.find((res) => res.id === id);
+      const dt = arr;
+      dt.id = data.id;
+      dt.user = data.user;
+      dt.message = data.message;
+      dt.when = data.when;
+    });
+  }
+
+  /** Notifica messaggi */
   playSound(){
     let audio = new Audio();
     audio.src = "../assets/bell.wav";
@@ -120,13 +183,19 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 			this.snackBar.open('Scrivere un messaggio', '', {
 				panelClass: 'error',
 				horizontalPosition: 'center',
-				duration:5000,
+				duration:2000,
 			});
 		}else if(check=='modificato'){
 			this.snackBar.open('Messaggio modificato', '', {
 				panelClass: 'success',
 				horizontalPosition: 'center',
-				duration:5000,
+				duration:2000,
+			});
+		}else if(check=='errore'){
+			this.snackBar.open('Errore load Chat', '', {
+				panelClass: 'error',
+				horizontalPosition: 'center',
+				duration:2000,
 			});
 		}else{
 			alert('Errore');
