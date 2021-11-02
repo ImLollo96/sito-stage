@@ -2,7 +2,6 @@
     justify-content: center;
     display: flex;
     margin-bottom: 55px;
-    /* min-height: calc(100vh - 64px - 64px); */
 }
 
 .message-box{
@@ -20,6 +19,7 @@
     margin: 0.5em 1em;
     overflow: auto;
     float: left;
+    min-width: 8%;
 }
 .message-container-right{
     height: auto;
@@ -28,6 +28,29 @@
     margin: 0.5em 1em;
     overflow: auto;
     float: left;
+    min-width: 8%;
+}
+.message-container:before{
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 8px solid transparent;
+    border-right: 8px solid rgb(200, 201, 200);
+    border-top: 8px solid rgb(200, 201, 200);
+    border-bottom: 8px solid transparent;
+    left: 4px;
+}
+.message-container-right:before{
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 8px solid transparent;
+    border-right: 8px solid var(--mat-primary-100);
+    border-top: 8px solid var(--mat-primary-100);
+    border-bottom: 8px solid transparent;
+    left: 4px;
 }
 @media only screen and (max-width: 1000px) {
     .message-container-right{
@@ -37,6 +60,17 @@
         margin: 0.5em 1em;
         overflow: auto;
         float: right;
+    }
+    .message-container-right:before{
+        content: "";
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        border-left: 8px solid var(--mat-primary-100);
+        border-right: 8px solid transparent;
+        border-top: 8px solid var(--mat-primary-100);
+        border-bottom: 8px solid transparent;
+        left: calc(100% - 20px);
     }
     .message-container{
         background: rgb(200, 201, 200);
@@ -72,19 +106,9 @@
     cursor: pointer;
 }
 .testo-box{
-/*     width: 90%;
-    background-color: whitesmoke;
-    height: 55px;
-    border-style: solid;
-    border-radius: 10px;
-    bottom: 64px;
-    position: fixed; */
-   
-
     width: 100%;
     background-color: #424242;
     border-top: 1px solid grey;
-    /* height: 52px; */
     bottom: 64px;
     position: fixed;
     display: flex;
@@ -104,7 +128,6 @@
     box-sizing: border-box;
     font-size: 1rem;
     color: black;
-    /* max-width: 80%; */
     height: 38px;
     margin-top: 1px;
     margin-right: 10px;

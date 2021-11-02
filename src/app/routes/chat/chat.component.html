@@ -1,5 +1,5 @@
 <div class="main" (click)="disappearContext()">
-    <div #scrollMe class="message-box">
+    <div #scrollMe class="message-box ">
         <div  *ngFor="let item of messageArray"> 
             <div  class="message-container" *ngIf="item.user!==currentUser; else me" (contextmenu)="contextMenuGrey($event)">
                 <p class="user"><strong>{{item.user}}</strong></p>
@@ -23,7 +23,7 @@
             </ng-template>
         </div>
     </div>
-
+ 
     <div class="testo-box">
         <textarea 
             matInput [(ngModel)]="messageText"
